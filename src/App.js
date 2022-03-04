@@ -1,6 +1,6 @@
 // core import
 import { useState, createContext } from 'react'
-import { BrowserRouter as Router, Routes, Route, Switch, HashRouter } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, HashRouter } from 'react-router-dom'
 
 // pages component
 import Header from './component/header'
@@ -39,7 +39,7 @@ function App () {
     <AppContext.Provider value={{ theme, setTheme }}>
       <ThemeProvider theme={theme ? lightTheme : darkTheme}>
         <CssBaseline />
-        <Router>
+        <HashRouter>
           <Header theme={theme} setTheme={setTheme} />
           <Container maxWidth="xl" sx={{ borderLeft: 1, borderRight: 1, borderColor: 'divider', minHeight: '86vh', }} >
             <Routes>
@@ -51,7 +51,7 @@ function App () {
             </Routes>
           </Container>
           <Footer title="Testing title props" description="Test description" />
-        </Router>
+        </HashRouter>
       </ThemeProvider>
     </AppContext.Provider>
   );

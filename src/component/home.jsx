@@ -25,10 +25,10 @@ const Home = () => {
                   <Typography variant="h5" fontWeight="bold">I'm an IT professional</Typography>
                   <Stack pt={2} direction="row" align="center" gap={1}>
                     <IconButton aria-label="Linkedin">
-                      <Link href="https://www.linkedin.com/in/taonarakarn/" underline="hover" target="_blank" rel="noopener"><LinkedInIcon /></Link>
+                      <Link href="https://www.linkedin.com/in/taonarakarn/" underline="hover" target="_blank" rel="noopener noreferrer"><LinkedInIcon /></Link>
                     </IconButton>
                     <IconButton aria-label="Github">
-                      <Link href="https://github.com/TaoNarakarn" underline="hover" target="_blank" rel="noopener"><GitHubIcon /></Link>
+                      <Link href="https://github.com/TaoNarakarn" underline="hover" target="_blank" rel="noopener noreferrer"><GitHubIcon /></Link>
                     </IconButton>
                   </Stack>
                 </Grid>
@@ -66,7 +66,7 @@ const Home = () => {
                 </Typography>
                 <br />
                 <Typography variant="subtitle1">{'I worked with multinational enterprises that have branched in Bangkok Thailand, and currently own '}
-                  <Link href="https://itselect.co.th" underline="hover" target="_blank" rel="noopener">itselect.co.th</Link>
+                  <Link href="https://itselect.co.th" underline="hover" target="_blank" rel="noopener noreferrer">itselect.co.th</Link>
                   {' which provide effordable IT equipements and supplies to businesses'}
                 </Typography>
               </Grid>
