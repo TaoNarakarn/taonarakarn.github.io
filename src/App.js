@@ -38,19 +38,17 @@ function App () {
     <AppContext.Provider value={{ theme, setTheme }}>
       <ThemeProvider theme={theme ? lightTheme : darkTheme}>
         <CssBaseline />
-        <HashRouter>
-          <Header theme={theme} setTheme={setTheme} />
-          <Container maxWidth="xl" sx={{ borderLeft: 1, borderRight: 1, borderColor: 'divider', minHeight: '86vh', }} >
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/experience" element={<Experience />} />
-              <Route path="/codebits" element={<CodeBits />} />
-              {/* <Route path="/note" element={<Note />} /> */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Container>
-          <Footer title="Testing title props" description="Test description" />
-        </HashRouter>
+        <Header theme={theme} setTheme={setTheme} />
+        <Container maxWidth="xl" sx={{ borderLeft: 1, borderRight: 1, borderColor: 'divider', minHeight: '86vh', }} >
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/codebits" element={<CodeBits />} />
+            {/* <Route path="/note" element={<Note />} /> */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Container>
+        <Footer title="Testing title props" description="Test description" />
       </ThemeProvider>
     </AppContext.Provider>
   );
