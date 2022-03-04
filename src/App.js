@@ -43,8 +43,8 @@ function App () {
           <Routes>
             {/* <Routes> */}
             <Route path="/" element={<Home />} />
-            <Route path="https://taonarakarn.github.io/#/experience" element={<Experience />} />
-            <Route path="https://taonarakarn.github.io/#/codebits" element={<CodeBits />} />
+            <Route path="/#/experience" element={<Experience />} />
+            <Route path="/#/codebits" element={<CodeBits />} />
             {/* <Route path="/note" element={<Note />} /> */}
             <Route path="*" element={<NotFound />} />
             {/* </Routes> */}
