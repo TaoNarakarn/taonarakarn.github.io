@@ -1,6 +1,6 @@
 // core import
 import { useState, createContext } from 'react'
-import { BrowserRouter as Router, Routes, Route, Switch } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 
 // pages component
 import Header from './component/header'
@@ -40,15 +40,15 @@ function App () {
         <CssBaseline />
         <Header theme={theme} setTheme={setTheme} />
         <Container maxWidth="xl" sx={{ borderLeft: 1, borderRight: 1, borderColor: 'divider', minHeight: '86vh', }} >
-          <Switch>
+          <Routes>
             {/* <Routes> */}
             <Route path="/" element={<Home />} />
-            <Route path="/experience" element={<Experience />} />
-            <Route path="/codebits" element={<CodeBits />} />
+            <Route path="https://taonarakarn.github.io/#/experience" element={<Experience />} />
+            <Route path="https://taonarakarn.github.io/#/codebits" element={<CodeBits />} />
             {/* <Route path="/note" element={<Note />} /> */}
             <Route path="*" element={<NotFound />} />
             {/* </Routes> */}
-          </Switch>
+          </Routes>
         </Container>
         <Footer title="Testing title props" description="Test description" />
       </ThemeProvider>
