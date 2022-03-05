@@ -56,7 +56,7 @@ const CodeBits = () => {
         <Typography variant='subtitle1'>While is site is a project for me in itself to learn React and MaterialUI component, I will try to create bits and pieces for fun too</ Typography>
       </Box>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={tab} onChange={handleTabChange} aria-label="bitsandpieces-tabs">
+        <Tabs value={tab} onChange={handleTabChange} variant="scrollable" scrollButtons="auto" aria-label="bitsandpieces-tabs">
           <Tab label="Get random user from API" {...a11yProps(0)} />
           <Tab label="AWS Lambda nodejs API" {...a11yProps(1)} />
           <Tab label="Item Three" {...a11yProps(2)} />

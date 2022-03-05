@@ -45,7 +45,7 @@ const cardify = (obj) => {
           <Typography variant="subtitle1" paragraph>
             Phone : {obj.phone}
           </Typography>
-          <Link href={`/user/${obj.name.first}`} variant="subtitle1">Edit Profile...</Link>
+          <Link href={`#`} variant="subtitle1">Edit Profile...</Link>
           {/* <Typography variant="subtitle1" color="primary">
             Continue reading...
           </Typography> */}
@@ -132,7 +132,6 @@ const userDetail = (user) => {
     event.preventDefault()
     user.location.country = event.target.value
   }
-  console.log(user)
   return (
     <Paper elevation={3} sx={{ padding: 3 }}>
       <Grid container spacing={2}>
@@ -265,7 +264,7 @@ const userDetail = (user) => {
           <Grid container direction="column" spacing={2}>
             <Grid item xs={12} md={6}>
               <Typography variant='body1'>Username : {user.login.username} </Typography>
-              <Typography variant='body1'>UUID : {user.login.uuid} years</Typography>
+              <Typography variant='body1'>UUID : {user.login.uuid}</Typography>
             </Grid>
           </Grid>
         </Grid>
@@ -290,7 +289,7 @@ const userDisplay = (user) => {
       <Box>{userDetail(user)}</Box>
       <br /><Divider /><br />
       <Typography variant='h6'><strong>Whats raw data looks like (stringify)</strong></Typography>
-      <Box>{JSON.stringify(user)}</Box>
+      <Box><Typography variant='body1' sx={{ wordWrap: 'break-word' }}>{JSON.stringify(user)}</Typography></Box>
     </>
   )
 }

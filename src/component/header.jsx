@@ -54,7 +54,7 @@ const SmallScreenMenu = (props) => {
       >
         {Pages.map((page, index) => (
           <MenuItem key={index} onClick={handleCloseNavMenu}>
-            <Typography textAlign="center">{page}</Typography>
+            <Typography textAlign="center">{page.linkComponent}</Typography>
           </MenuItem>
         ))}
       </Menu>
@@ -145,8 +145,9 @@ function Header (props) {
                   key={index}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: 'white', display: 'block' }}
+                  href={page.link}
                 >
-                  {page}
+                  {page.linkWord}
                 </Button>
               ))}
             </Box>
