@@ -3,11 +3,11 @@ const Note = () => {
     <>
       <div>
         <section>
-
         </section>
         <section>
           <h3>This is just to note things that I encounter while making this site for fun</h3>
           <ul>
+            <li>not sure if this chart.js or react-chartjs-2 but you can only set options once and it will copy to other chart as well</li>
             <li>to get better understanding at Grid container > grid (for dividing main container) > another container (for manage grid inside) > grid</li>
             <li>spread operator can be use with both array [...arr] and object </li>
             <li>When using setState don't forget to use function toset otherwise it will just keep toggle</li>

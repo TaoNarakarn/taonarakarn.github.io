@@ -135,7 +135,7 @@ const userDetail = (user) => {
   return (
     <Paper elevation={3} sx={{ padding: 3 }}>
       <Grid container spacing={2}>
-        <Grid item xs={12}><Typography variant='h6'>Personal Infomation : </Typography></Grid>
+        <Grid item xs={12}><Typography variant='h6'>Personal Infomation : <strong>(Can't edit because I didn't setup state control for these inputs)</strong></Typography></Grid>
         <Grid item xs={12} md={3}>
           <img style={{ width: '100%' }} src={user.picture.large} alt={user.name.first + " " + user.name.last} />
         </Grid>
@@ -274,7 +274,7 @@ const userDetail = (user) => {
 }
 
 const userDisplay = (user) => {
-  if (user === undefined || user === '') { return <Typography variant='h6' sx={{ paddingTop: 3 }}>{'No data yet!'}</Typography> }
+  if (user === undefined || user === '') { return <Typography variant='h6' fontWeight='bold' mt={3} align='center'>{'No data yet, click button above to see charts and table'}</Typography> }
   return (
     <>
       <br /><Divider /><br />
@@ -284,7 +284,7 @@ const userDisplay = (user) => {
       <Typography variant='h6'>Raw data (in table format) table header is dynamic it is a list of keys from returned object</Typography>
       <Box>{generateTable(user)}</Box>
       <br /><Divider /><br />
-      <Typography variant='h6'>Above looks really bad, If make it to looks more presentable <strong>(Can't edit because I didn't setup state control for these inputs)</strong></Typography>
+      <Typography variant='h6'>Above looks really bad, If make it to looks more presentable </Typography>
       <br /><Divider /><br />
       <Box>{userDetail(user)}</Box>
       <br /><Divider /><br />
@@ -303,13 +303,22 @@ const RandomUser = () => {
   }
   return (
     <Box sx={{ flexGrow: 0 }}>
-      <Typography variant='h4'>Get random user data from randomuser API using Axios</Typography>
-      <Typography variant='subtitle1'>Get 1 user data every click and put them on different display style</Typography>
-      <Typography variant='subtitle1'>Click button below to get user</Typography>
-      <br />
-      <Button variant="contained" onClick={handleClick}>Get user</Button>
-      <br />
-      {userDisplay(user)}
+      <Grid container>
+        <Grid item xs={12} pb={3} borderBottom={1} borderColor='divider'>
+          <Typography variant='h4'>Get random user data from randomuser API using Axios</Typography>
+          <Typography variant='subtitle1'>Get 1 user data every click and put them on different display format</Typography>
+        </Grid>
+        <Grid item xs={12} mt={3}>
+          <Grid container align='center'>
+            <Grid item xs={12}>
+              <Button variant="contained" onClick={handleClick}>{user === '' ? 'Get user' : 'Get new user'}</Button>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          {userDisplay(user)}
+        </Grid>
+      </Grid>
     </Box >
   )
 }

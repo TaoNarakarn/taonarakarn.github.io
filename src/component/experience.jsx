@@ -3,6 +3,7 @@ import { Grid, Link, Typography, Button, Icon } from "@mui/material"
 import experience from "../staticValue/experience"
 
 const Experience = () => {
+  if (experience.length === 0) return (<Typography variant='h5' fontWeight='bold' align='center'>{'No experience'}</Typography>)
   const fetchExperience = (experience) => {
     return (
       experience.map((exp, index) =>

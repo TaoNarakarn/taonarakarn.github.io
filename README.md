@@ -4,11 +4,16 @@ I suck at designing things so lets get better at page designing as we goes along
 Project mostly done on local server
 
 ## what I wanted to do? (todos)
- - can this site connect to python and node.js backend at the sametime?
- - favicon still need to change :/
+ [] can this site connect to python and node.js backend at the sametime?
+ [] favicon still need to change :/
+ [] Add more stuff in codebits
 
 ## What I did (change log)
 I'll try to update this log as much as I can :)
+  #### 6 Mar 2022
+  - Add Profile builder tab
+  - Add data visualization tab (chartjs) for basic data viz
+  - Add react-chartjs-2 package (give up on using ChartJS by itself)
   #### 5 Mar 2022
   - Add content in experience page
   - Add noteable project in Home page (I think here should be better)
