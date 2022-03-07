@@ -9,7 +9,7 @@ import ChartJS from '../bitsandpieces/chartjs'
 import ProfileBuilder from '../bitsandpieces/profilebuilder'
 
 // MUI imports
-import { Typography, Box, Tabs, Tab } from "@mui/material"
+import { Typography, Box, Tabs, Tab, Divider } from "@mui/material"
 
 function TabPanel (props) {
   const { children, value, index, ...other } = props;
@@ -57,11 +57,12 @@ const CodeBits = () => {
         <Typography variant='subtitle1'>While is site is a project for me in itself to learn React and MaterialUI component, but I am create bits and pieces for fun too</ Typography>
         <Typography variant='subtitle1' fontWeight='bold'>State are for each component, when you switch tabs you will lose what was there</Typography>
       </Box>
+      <Divider />
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={tab} onChange={handleTabChange} variant="scrollable" scrollButtons="auto" aria-label="bitsandpieces-tabs">
+        <Tabs value={tab} onChange={handleTabChange} variant="scrollable" scrollButtons="auto" aria-label="bitsandpieces-tabs" >
           <Tab label="Get data from API" {...a11yProps(0)} />
           <Tab label="Chart JS" {...a11yProps(1)} />
-          {/* <Tab label="Profile builder" {...a11yProps(2)} /> */}
+          <Tab label="Profile builder" {...a11yProps(2)} />
           {/* <Tab label="AWS Lambda nodejs API" {...a11yProps(3)} /> */}
         </Tabs>
       </Box>
@@ -71,9 +72,9 @@ const CodeBits = () => {
       <TabPanel value={tab} index={1}>
         <ChartJS />
       </TabPanel>
-      {/* <TabPanel value={tab} index={2}>
+      <TabPanel value={tab} index={2}>
         <ProfileBuilder />
-      </TabPanel> */}
+      </TabPanel>
       {/* <TabPanel value={tab} index={3}>
         <Typography>Coming soon</Typography>
         <AWSLambda />

@@ -10,6 +10,9 @@ Project mostly done on local server
 
 ## What I did (change log)
 I'll try to update this log as much as I can :)
+  #### 7 Mar 2022
+  - Add edit and delete profile button in profile builder tab
+  - fix some spelling mistake
   #### 6 Mar 2022
   - Add Profile builder tab
   - Add data visualization tab (chartjs) for basic data viz

@@ -12,7 +12,7 @@ import Experience from './component/experience'
 import NotFound from './component/404'
 
 // MUI import
-import { CssBaseline, Container } from "@mui/material"
+import { CssBaseline, Container, Paper } from "@mui/material"
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 const darkTheme = createTheme({
@@ -24,9 +24,9 @@ const darkTheme = createTheme({
 const lightTheme = createTheme({
   palette: {
     mode: 'light',
-    // background: {
-    //   default: "#e3f2fd"
-    // }
+    background: {
+      default: "rgba(0, 0, 0, 0.08)"
+    }
   },
 })
 
@@ -39,7 +39,8 @@ function App () {
       <ThemeProvider theme={theme ? lightTheme : darkTheme}>
         <CssBaseline />
         <Header theme={theme} setTheme={setTheme} />
-        <Container maxWidth="xl" sx={{ borderLeft: 1, borderRight: 1, borderColor: 'divider', minHeight: '86vh', }} >
+
+        <Container maxWidth="xl" sx={{ borderLeft: 1, borderRight: 1, borderColor: 'divider', minHeight: '86vh', backgroundColor: theme ? '#fafafa' : '#121212' }} >
           <Routes>
             {/* <Routes> */}
             <Route path="/" element={<Home />} />
@@ -50,6 +51,7 @@ function App () {
             {/* </Routes> */}
           </Routes>
         </Container>
+
         <Footer title="Testing title props" description="Test description" />
       </ThemeProvider>
     </AppContext.Provider>

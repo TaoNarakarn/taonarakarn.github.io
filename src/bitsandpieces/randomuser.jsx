@@ -15,7 +15,7 @@ import {
 
 const checkObj = (obj) => {
   // console.log(typeof (obj))
-  if (obj === null) { return <span>No Data Ja</span> }
+  if (obj === null) { return <span>No Data</span> }
   if (typeof (obj) !== 'object') { return obj.toString() }
   let temp = Object.entries(obj)
   return (
@@ -274,22 +274,25 @@ const userDetail = (user) => {
 }
 
 const userDisplay = (user) => {
-  if (user === undefined || user === '') { return <Typography variant='h6' fontWeight='bold' mt={3} align='center'>{'No data yet, click button above to see charts and table'}</Typography> }
+  if (user === undefined || user === '') { return <Typography variant='h6' fontWeight='bold' mt={3} align='center'>{'No data yet, click button above to get user data'}</Typography> }
   return (
     <>
       <br /><Divider /><br />
       <Typography variant='h6'>Display as card from MUI</Typography>
+      <br />
       <Box>{cardify(user)}</Box>
       <br /><Divider /><br />
       <Typography variant='h6'>Raw data (in table format) table header is dynamic it is a list of keys from returned object</Typography>
+      <br />
       <Box>{generateTable(user)}</Box>
       <br /><Divider /><br />
       <Typography variant='h6'>Above looks really bad, If make it to looks more presentable </Typography>
-      <br /><Divider /><br />
+      <br />
       <Box>{userDetail(user)}</Box>
       <br /><Divider /><br />
       <Typography variant='h6'><strong>Whats raw data looks like (stringify)</strong></Typography>
-      <Box><Typography variant='body1' sx={{ wordWrap: 'break-word' }}>{JSON.stringify(user)}</Typography></Box>
+      <br />
+      <Box><Paper elevation={3} sx={{ padding: 3 }}><Typography variant='body1' sx={{ wordWrap: 'break-word' }}>{JSON.stringify(user)}</Typography></Paper></Box>
     </>
   )
 }
@@ -306,7 +309,7 @@ const RandomUser = () => {
       <Grid container>
         <Grid item xs={12} pb={3} borderBottom={1} borderColor='divider'>
           <Typography variant='h4'>Get random user data from randomuser API using Axios</Typography>
-          <Typography variant='subtitle1'>Get 1 user data every click and put them on different display format</Typography>
+          <Typography variant='subtitle1'>Get new user data every click and put them on different display format</Typography>
         </Grid>
         <Grid item xs={12} mt={3}>
           <Grid container align='center'>

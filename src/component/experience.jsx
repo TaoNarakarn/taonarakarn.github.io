@@ -30,10 +30,10 @@ const Experience = () => {
     <Grid container pt={3}>
       <Grid item xs={12}>
         <Grid container>
-          <Grid md={1} sx={{ xs: 'none' }}>
+          <Grid item md={1} sx={{ xs: 'none' }}>
             {/* Empty space for align */}
           </Grid>
-          <Grid xs={12} md={11}>
+          <Grid item xs={12} md={11}>
             <Typography variant="h4">Experience</Typography>
             <Typography variant="h6">For PDF version click <Button variant="contained" href="https://drive.google.com/file/d/1ad9STGtWFWMHsVv0hXtVWPKz93fRLL6P/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</Button></Typography>
           </Grid>

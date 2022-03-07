@@ -108,8 +108,8 @@ const Home = () => {
               <Grid item xs={12}>
                 <Typography variant='h5' fontWeight="bold">Projects</Typography>
                 <br />
-                <Grid container direction="row" spacing={2}>
-                  <Grid item xs={12} md={6}>
+                <Grid container direction="row" spacing={1}>
+                  <Grid item xs={12} md={5}>
                     <Card sx={{ maxWidth: 345 }}>
                       <CardMedia
                         component="img"
@@ -130,7 +130,7 @@ const Home = () => {
                     </Card>
                   </Grid>
                   {/* Project 2 */}
-                  <Grid item xs={12} md={6}>
+                  <Grid item xs={12} md={5}>
                     <Card sx={{ maxWidth: 345 }}>
                       <CardMedia
                         component="img"
