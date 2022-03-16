@@ -2,10 +2,11 @@
 import React, { useState, useContext } from 'react'
 
 // Context from App.js
-import { AppContext } from '../App'
+import { ThemeContext } from '../App'
 
-// Nav menu
-import Pages from './nav'
+// Component
+import Pages from './nav' // list of links
+// import { MenuComponent } from './customComponent'
 
 // MUI CSS Framework component
 import {
@@ -63,7 +64,7 @@ const SmallScreenMenu = (props) => {
 }
 
 const UserIcon = (props) => {
-  const { theme, setTheme } = useContext(AppContext)
+  const { theme, setTheme } = useContext(ThemeContext)
   // const { theme, setTheme } = props
   // const [anchorElUser, setAnchorElUser] = useState(null)
   // const handleOpenUserMenu = (event) => {
@@ -141,13 +142,23 @@ function Header (props) {
             </Typography> */}
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {Pages.map((page, index) => (
+                // (page.type === 'link' ?
+                //   <Button
+                //     key={index}
+                //     onClick={handleCloseNavMenu}
+                //     sx={{ my: 2, color: 'white', display: 'block' }}
+                //     href={page.link}
+                //   >
+                //     {page.linkName}
+                //   </Button>
+                //   : <MenuComponent key={index} linkName={page.linkName} subMenu={page.subMenu} />)
                 <Button
                   key={index}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: 'white', display: 'block' }}
                   href={page.link}
                 >
-                  {page.linkWord}
+                  {page.linkName}
                 </Button>
               ))}
             </Box>

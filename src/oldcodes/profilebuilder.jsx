@@ -44,7 +44,7 @@ const ActionDialog = (props) => {
     if (value === undefined || value === 'No') {
       setDialogAction({ open: false })
     } else if (value === 'Yes') {
-      // Click yes do stuff
+      // Click yes, do stuff
       if (action.actionType === 'edit') {
         handleExpEdit(action.index)
       } else if (action.actionType === 'delete') {
@@ -73,7 +73,6 @@ const ActionDialog = (props) => {
 
 const Experience = (props) => {
   const { experience, handleExpPrompt } = props
-  console.log(experience)
   if (experience === '' || experience.length === 0) return (<Typography variant='h5' fontWeight='bold' align='center'>{'You need more experience'}</Typography>)
   return (
     experience.map((exp, index) =>
@@ -184,6 +183,8 @@ const ProfileBuilder = () => {
       <Grid item xs={12}>
         <Grid item xs={12} pb={3} borderBottom={1} borderColor='divider'>
           <Typography variant='h4'>Profile builder</Typography>
+          <Typography variant='h5'>Check Resume builder for more features</Typography>
+          <Typography variant='subtitle1'>It works kind of like todo list but not quite</Typography>
           <Typography variant='subtitle1'>Got this idea from experience page to keep data in JSON and map them out</Typography>
         </Grid>
       </Grid>

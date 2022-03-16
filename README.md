@@ -4,15 +4,27 @@ I suck at designing things so lets get better at page designing as we goes along
 Project mostly done on local server
 
 ## what I wanted to do? (todos)
- [] can this site connect to python and node.js backend at the sametime?
- [] favicon still need to change :/
- [] Add more stuff in codebits
+  - [ ] Connect to backend by using Amazon lambda
+  - [ ] Favicon still need to change, its still create react app default (I don't have any design in mind)
+  - [ ] Add more stuff in codebits
+  - [x] Performance issue when update array of object state (its input is lag without helping library) : I fix this by create temporary state and merge them back when saved
+  - [ ] Design a bunch more stuff (resume builder: template, style editor, data entry)
+  - [ ] Playing with more APIs: JWTs
 
-## What I did (change log)
+## What I did (dev log)
 I'll try to update this log as much as I can :)
+  #### 16 Mar 2022
+  - Move profile builder to combine with resume builder
+  - Add Project menu before codebits
+  - Add beta version of resume builder into project page (currently have personal detail, social links, skill, experience, and language section)
+  - Change layout on every pages (with better understanding of how to work with MUI Grid ...I think)
+  #### 10 Mar 2022
+  - I have been playing on leetcode so not much update
+  - Add draft/design to new codebits
   #### 7 Mar 2022
   - Add edit and delete profile button in profile builder tab
   - fix some spelling mistake
+  - change white theme color to be more pleasing to the eyes
   #### 6 Mar 2022
   - Add Profile builder tab
   - Add data visualization tab (chartjs) for basic data viz

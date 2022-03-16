@@ -241,8 +241,8 @@ const userDetail = (user) => {
                   onChange={handleCountryChange}
                   placeholder="Select Country"
                 >
-                  {countryList.map((value) =>
-                    <MenuItem value={value}>{value}</MenuItem>
+                  {countryList.map((value, index) =>
+                    <MenuItem key={index} value={value}>{value}</MenuItem>
                   )}
                 </Select>
               </FormControl>
@@ -305,24 +305,24 @@ const RandomUser = () => {
     setUser(results[0] || 'No user data found')
   }
   return (
-    <Box sx={{ flexGrow: 0 }}>
-      <Grid container>
-        <Grid item xs={12} pb={3} borderBottom={1} borderColor='divider'>
-          <Typography variant='h4'>Get random user data from randomuser API using Axios</Typography>
-          <Typography variant='subtitle1'>Get new user data every click and put them on different display format</Typography>
-        </Grid>
-        <Grid item xs={12} mt={3}>
-          <Grid container align='center'>
-            <Grid item xs={12}>
-              <Button variant="contained" onClick={handleClick}>{user === '' ? 'Get user' : 'Get new user'}</Button>
-            </Grid>
+
+    <Paper elevation={3} sx={{ padding: 3 }}>
+      <Grid item xs={12} pb={3} borderBottom={1} borderColor='divider'>
+        <Typography variant='h5'>Get random user data from randomuser API using Axios</Typography>
+        <Typography variant='subtitle1'>Get new user data every click and put them on different display format</Typography>
+      </Grid>
+      <Grid item xs={12} mt={3}>
+        <Grid container align='center'>
+          <Grid item xs={12}>
+            <Button variant="contained" onClick={handleClick}>{user === '' ? 'Get user' : 'Get new user'}</Button>
           </Grid>
         </Grid>
-        <Grid item xs={12}>
-          {userDisplay(user)}
-        </Grid>
       </Grid>
-    </Box >
+      <Grid item xs={12}>
+        {userDisplay(user)}
+      </Grid>
+    </Paper>
+
   )
 }
 

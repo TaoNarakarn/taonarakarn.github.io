@@ -7,7 +7,7 @@ import { Chart, CategoryScale, LinearScale, Tooltip, BarElement, ArcElement, Poi
 import { Bar, Pie, Bubble } from 'react-chartjs-2'
 
 // MUI imports
-import { Grid, Typography, FormControl, Button, Select, InputLabel, MenuItem } from "@mui/material"
+import { Grid, Paper, Typography, FormControl, Button, Select, InputLabel, MenuItem } from "@mui/material"
 import { DataGrid } from '@mui/x-data-grid'
 
 const dataGridData = (user) => {
@@ -139,25 +139,28 @@ const ChartJS = () => {
     return answer
   }
 
-  const createDataGrid = () => {
-    if (user === '') { return null }
-    let { row, column } = dataGridData(user)
-    let userWithID = row.map((c) => {
-      let newObj = c
-      newObj.name = parseObjData(c.name)
-      newObj.location = parseObjData(c.location)
-      newObj.login = parseObjData(c.login)
-      newObj.dob = parseObjData(c.dob)
-      newObj.registered = parseObjData(c.registered)
-      // newObj.picture = <img src={c.picture.thumbnail} alt={newObj.name} />
-      newObj.picture = c.picture.thumbnail
-      return newObj
-    })
-    return <DataGrid rows={userWithID} columns={column} />
-  }
 
-  const DataGridSection = () => {
+
+  const dataGridSection = () => {
     if (user === '') return ('')
+
+    const createDataGrid = () => {
+      if (user === '') { return null }
+      let { row, column } = dataGridData(user)
+      let userWithID = row.map((c) => {
+        let newObj = c
+        newObj.name = parseObjData(c.name)
+        newObj.location = parseObjData(c.location)
+        newObj.login = parseObjData(c.login)
+        newObj.dob = parseObjData(c.dob)
+        newObj.registered = parseObjData(c.registered)
+        // newObj.picture = <img src={c.picture.thumbnail} alt={newObj.name} />
+        newObj.picture = c.picture.thumbnail
+        return newObj
+      })
+      return <DataGrid rows={userWithID} columns={column} />
+    }
+
     return (
       <Grid container>
         <Grid item xs={12}>
@@ -270,7 +273,7 @@ const ChartJS = () => {
   useEffect(() => { }, [user])
 
   return (
-    <Grid container>
+    <Paper elevation={3} sx={{ padding: 3 }}>
       <Grid item xs={12} pb={3} borderBottom={1} borderColor='divider'>
         <Typography variant='h4'>Data visualization and table</Typography>
         <Typography variant='subtitle1'>Expand from previous bits and take data to make it more presentatable by aggregate data into "Data Viz"</Typography>
@@ -310,9 +313,9 @@ const ChartJS = () => {
         </Grid>
       </Grid>
       <Grid item xs={12} mt={3}>
-        <DataGridSection />
+        {dataGridSection()}
       </Grid>
-    </Grid >
+    </Paper >
   )
 }
 

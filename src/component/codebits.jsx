@@ -6,10 +6,9 @@ import PropTypes from 'prop-types'
 import RandomUser from '../bitsandpieces/randomuser'
 // import AWSLambda from '../bitsandpieces/awslambda'
 import ChartJS from '../bitsandpieces/chartjs'
-import ProfileBuilder from '../bitsandpieces/profilebuilder'
 
 // MUI imports
-import { Typography, Box, Tabs, Tab, Divider } from "@mui/material"
+import { Typography, Grid, Box, Tabs, Tab, Divider } from "@mui/material"
 
 function TabPanel (props) {
   const { children, value, index, ...other } = props;
@@ -22,7 +21,7 @@ function TabPanel (props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ padding: 3 }}>
+        <Box sx={{ paddingTop: 3, paddingBottom: 3 }}>
           {children}
         </Box>
       )}
@@ -51,35 +50,51 @@ const CodeBits = () => {
   }
 
   return (
-    <>
-      <Box mb={3} sx={{ paddingTop: 3 }}>
-        <Typography variant='h5'>CodeBits</Typography>
-        <Typography variant='subtitle1'>While is site is a project for me in itself to learn React and MaterialUI component, but I am create bits and pieces for fun too</ Typography>
-        <Typography variant='subtitle1' fontWeight='bold'>State are for each component, when you switch tabs you will lose what was there</Typography>
-      </Box>
-      <Divider />
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={tab} onChange={handleTabChange} variant="scrollable" scrollButtons="auto" aria-label="bitsandpieces-tabs" >
-          <Tab label="Get data from API" {...a11yProps(0)} />
-          <Tab label="Chart JS" {...a11yProps(1)} />
-          <Tab label="Profile builder" {...a11yProps(2)} />
-          {/* <Tab label="AWS Lambda nodejs API" {...a11yProps(3)} /> */}
-        </Tabs>
-      </Box>
-      <TabPanel value={tab} index={0}>
-        <RandomUser />
-      </TabPanel>
-      <TabPanel value={tab} index={1}>
-        <ChartJS />
-      </TabPanel>
-      <TabPanel value={tab} index={2}>
-        <ProfileBuilder />
-      </TabPanel>
-      {/* <TabPanel value={tab} index={3}>
+    <Grid container variant="containerGrid" sx={{ borderLeft: 1, borderRight: 1, borderColor: 'divider', }}>
+      <Grid item xs variant="sideGrid">
+        {/* Blank grid for pagination and flex this should also helps with custom style */}
+      </Grid>
+      <Grid item xs={12} md={9} sx={{
+        borderLeft: 1,
+        borderRight: 1,
+        borderColor: 'divider',
+        paddingLeft: 5,
+        paddingRight: 5,
+      }}>
+        <Box mb={3} sx={{ paddingTop: 3 }}>
+          <Typography variant='h5'>CodeBits</Typography>
+          <Typography variant='subtitle1'>While is site is a project for me in itself to learn React and MaterialUI component, but I am create bits and pieces for fun too</ Typography>
+          <Typography variant='subtitle1' fontWeight='bold'>State are for each component, when you switch tabs you will lose what was there</Typography>
+        </Box>
+        <Divider />
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <Tabs value={tab} onChange={handleTabChange} variant="scrollable" scrollButtons="auto" aria-label="bitsandpieces-tabs" >
+            <Tab label="Get data from API" {...a11yProps(0)} />
+            <Tab label="Chart JS" {...a11yProps(1)} />
+            {/* <Tab label="AWS Lambda nodejs API" {...a11yProps(2)} /> */}
+          </Tabs>
+        </Box>
+        <TabPanel value={tab} index={0}>
+          <RandomUser />
+        </TabPanel>
+        <TabPanel value={tab} index={1}>
+          <ChartJS />
+        </TabPanel>
+        {/* <TabPanel value={tab} index={2}>
+<AWSLambda />
+        </TabPanel> */}
+        {/* <TabPanel value={tab} index={3}>
+
+        </TabPanel> */}
+        {/* <TabPanel value={tab} index={3}>
         <Typography>Coming soon</Typography>
-        <AWSLambda />
+        
       </TabPanel> */}
-    </>
+      </Grid>
+      <Grid item xs variant="sideGrid">
+        {/* Blank grid for pagination and flex this should also helps with custom style */}
+      </Grid>
+    </Grid>
   )
 }
 

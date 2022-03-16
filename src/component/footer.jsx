@@ -3,23 +3,21 @@ import { Container, Box, Typography, Link, CssBaseline } from '@mui/material'
 const Copyright = () => {
   const from = 2022
   const current = new Date().getFullYear()
-  let fromTo = "From 2022 - " + current
-  if (from === current) { fromTo = "2022" }
+  let fromTo = "From 2022 - " + current + "."
+  if (from === current) { fromTo = "2022." }
 
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {/* {'Copyright © '} */}
-      <Link color="inherit" href="https://mui.com/">
-        Built using Material UI
-      </Link>{' '}
+      Built using{' '}
+      <Link color="inherit" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">ReactJS</Link>{' & '}
+      <Link color="inherit" href="https://mui.com/" target="_blank" rel="noopener noreferrer">Material UI</Link>{' '}
       {fromTo}
-      {'.'}
     </Typography>
   )
 }
 
 const Footer = (props) => {
-
   // const { description, title } = props;
 
   return (

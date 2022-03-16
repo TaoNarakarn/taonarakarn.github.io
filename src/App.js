@@ -6,19 +6,35 @@ import { Routes, Route } from 'react-router-dom'
 import Header from './component/header'
 import Footer from './component/footer'
 import Home from './component/home'
-import CodeBits from './component/codebits'
 import Experience from './component/experience'
+import Project from './component/project'
+import ResumeBuilder from './projects/resumebuilder/resumebuilder'
+import CodeBits from './component/codebits'
 // import Note from './component/note'
 import NotFound from './component/404'
 
 // MUI import
-import { CssBaseline, Container, Paper } from "@mui/material"
+import { CssBaseline } from "@mui/material"
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
   },
+  components: {
+    MuiGrid: {
+      variants: [
+        {
+          props: { variant: 'containerGrid' },
+          style: { backgroundColor: '#121212', minHeight: '86vh' }
+        },
+        {
+          props: { variant: 'sideGrid' },
+          style: { backgroundColor: '#0a1929' }
+        },
+      ]
+    }
+  }
 })
 
 const lightTheme = createTheme({
@@ -26,35 +42,45 @@ const lightTheme = createTheme({
     mode: 'light',
     background: {
       default: "rgba(0, 0, 0, 0.08)"
+    },
+  },
+  components: {
+    MuiGrid: {
+      variants: [
+        {
+          props: { variant: 'containerGrid' },
+          style: { backgroundColor: '#fafafa', minHeight: '86vh' }
+        },
+        {
+          props: { variant: 'sideGrid' },
+          style: { backgroundColor: '#f0f0f0' }
+        },
+      ]
     }
   },
 })
 
-export const AppContext = createContext(null)
+export const ThemeContext = createContext(null)
 
 function App () {
   const [theme, setTheme] = useState(true)
   return (
-    <AppContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       <ThemeProvider theme={theme ? lightTheme : darkTheme}>
         <CssBaseline />
         <Header theme={theme} setTheme={setTheme} />
-
-        <Container maxWidth="xl" sx={{ borderLeft: 1, borderRight: 1, borderColor: 'divider', minHeight: '86vh', backgroundColor: theme ? '#fafafa' : '#121212' }} >
-          <Routes>
-            {/* <Routes> */}
-            <Route path="/" element={<Home />} />
-            <Route path="/experience" element={<Experience />} />
-            <Route path="/codebits" element={<CodeBits />} />
-            {/* <Route path="/note" element={<Note />} /> */}
-            <Route path="*" element={<NotFound />} />
-            {/* </Routes> */}
-          </Routes>
-        </Container>
-
+        <Routes>
+          <Route path="/" element={<Home theme={theme} />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/project" element={<Project />} />
+          <Route path="/project/resume-builder" element={<ResumeBuilder />} />
+          <Route path="/codebits" element={<CodeBits />} />
+          {/* <Route path="/note" element={<Note />} /> */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
         <Footer title="Testing title props" description="Test description" />
       </ThemeProvider>
-    </AppContext.Provider>
+    </ThemeContext.Provider>
   );
 }
 
