@@ -1,8 +1,11 @@
+import { useState } from 'react'
+
 import {
-  Button, Link, Rating,
+  Grid, Stack, Collapse, Button, Link, Rating, Tooltip, Icon, IconButton,
   Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions,
 } from '@mui/material'
 import {
+  AddCircle, DoNotDisturbOn, Cancel,
   Facebook, Instagram, LinkedIn, Pinterest, Reddit, Twitter, YouTube, Public,
   Circle, CircleOutlined,
   SignalCellular0Bar, SignalCellular1Bar, SignalCellular2Bar, SignalCellular3Bar, SignalCellular4Bar, GitHub
@@ -43,14 +46,44 @@ export function signalLevel (level) {
   }
 }
 
+
+export function ComponentMenu (props) { // settings menu *** experimental ***
+  const { componentName } = props
+  const [visibility, setVisibility] = useState(true)
+  // const { setVisible, setPosition, setShowInEditor } = props
+  function setVisible () {
+    console.log('visibility toggle')
+    setVisibility(visibility => !visibility)
+  }
+  return (
+    <Grid container>
+      <Grid item xs={12} display='flex' justifyContent='flex-end'>
+        <Tooltip title="Show in preview"><IconButton id="edit" name="edit" onClick={setVisible}><Icon>{visibility ? 'visibility' : 'visibility_off'}</Icon></IconButton></Tooltip>
+        <Button>remove block</Button>
+      </Grid>
+    </Grid>
+  )
+}
+
+/**
+ * When click delete on entry, will popup confirmation dialog, Use in conjunction with deleteConfirmationDialog function
+ * @param {Number} index - index of entry to be delete
+ * @param {*} state - main state of current component 
+ * @param {Function} setDialogAction - function to set dialogAction object
+ * @param {String} key - key to show as entryName to be delete
+ */
+export function handleDelete (index, state, setDialogAction, key) {
+  let entryName = state[index][key]
+  setDialogAction({ open: true, entryName, index })
+}
+
 /** 
  * Delete confirmation dialog
  * - Argument 2
- * - Object dialogAction({open: bool, index: int, entryName: text})
- * - - open > true open dialog, false close dialog
- * - - index > index to delete from array (if confirmed)
- * - - entryName > just description of entry to delete
- * - Function handleDialogClose
+ * @param {Object} dialogAction * open {bool} > true open dialog, false close dialog
+ * * index {Number} > index to delete from array (if confirmed)
+ * * entryName {String} > just description of entry to delete
+ * @param {Function} handleDialogClose
  * */
 export function deleteConfirmationDialog (dialogAction, handleDialogClose) {
   return (
@@ -68,6 +101,80 @@ export function deleteConfirmationDialog (dialogAction, handleDialogClose) {
         <Button value='No' onClick={handleDialogClose}>No</Button>
       </DialogActions>
     </Dialog>
+  )
+}
+
+
+/**
+ * Adding Entry to main state
+ * @param {*} props
+ * * setState - useState function prop from main state to add entry
+ * * mainInput - main input component that have all inputs requried for it, it need 2 arguments (tempData, handleChange) from this component
+ * * buttonDisplay - change display type of Save and Cancel button 'button' and 'icon' default 'icon'
+ * * dataTemplate - Object that have entry data point to keep input component in control
+ * * entryName - String that just change name of add button to + add "entryName"
+ * @returns Compoent that add entry to (setState props)
+ */
+export function AddEntry (props) {
+  const { setState, mainInput, buttonDisplay, dataTemplate, entryName } = props
+  const [tempData, setTempData] = useState(dataTemplate)
+  const [entryAddCollapse, setEntryAddCollapse] = useState(false)
+  if (entryAddCollapse === false) { return <Button startIcon={<AddCircle />} onClick={() => setEntryAddCollapse(entryAddCollapse => true)}>Add {entryName}</Button> }
+
+  function handleChange (event) {
+    const { name, value, type } = event.target
+    if (type === 'checkbox') { setTempData(currentValue => ({ ...currentValue, [name]: event.target.checked })) }
+    else { setTempData(currentValue => ({ ...currentValue, [name]: value })) }
+  }
+
+  function handleAdd (event) {
+    setTempData(currentValue => dataTemplate)
+    setEntryAddCollapse(() => false)
+    setState(currentValue => ([...currentValue, tempData]))
+  }
+
+  function handleCancelAdd (event) {
+    setTempData(currentValue => dataTemplate)
+    setEntryAddCollapse(() => false)
+  }
+
+  function displayButton (buttonDisplay) {
+    let buttonType = (
+      <Grid item xs={12}>
+        <Stack direction="row" justifyContent="center" spacing={3}>
+          <Button startIcon={<AddCircle />} variant='contained' onClick={handleAdd}>Add</Button>
+          <Button startIcon={<Cancel />} variant='contained' color='warning' onClick={handleCancelAdd}>Cancel</Button>
+        </Stack>
+      </Grid>
+    )
+    let iconType = (
+      <Grid item xs={12} md={2}>
+        <Stack direction="row" alignItems="center" justifyContent="center">
+          <Tooltip title="Add"><IconButton id="save" name="save" onClick={handleAdd}><Icon>check</Icon></IconButton></ Tooltip>
+          <Tooltip title="Cancel"><IconButton id="cancel" name="cancel" onClick={handleCancelAdd}><Icon>close</Icon></IconButton></ Tooltip>
+        </Stack>
+      </Grid>
+    )
+    switch (buttonDisplay) {
+      case 'button':
+        return buttonType
+      case 'icon':
+        return iconType
+      default:
+        return iconType
+    }
+  }
+
+  return (
+    <>
+      <Button startIcon={<DoNotDisturbOn />} onClick={handleCancelAdd}>Close</Button>
+      <Collapse in={entryAddCollapse}>
+        <Grid container spacing={2}>
+          {mainInput(tempData, handleChange)}
+          {displayButton(buttonDisplay)}
+        </Grid>
+      </Collapse>
+    </>
   )
 }
 

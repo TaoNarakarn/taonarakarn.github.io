@@ -13,10 +13,14 @@ Project mostly done on local server
 
 ## What I did (dev log)
 I'll try to update this log as much as I can :)
+  #### 17 Mar 2022
+  - Add Education and Certification section to resume builder
+  - Make more reuseable component in the backend so that if we need new component we can add it faster
+  - Change display of preview in resume builder to look more like a real paper
   #### 16 Mar 2022
   - Move profile builder to combine with resume builder
   - Add Project menu before codebits
-  - Add beta version of resume builder into project page (currently have personal detail, social links, skill, experience, and language section)
+  - Add alpha version of resume builder into project page (currently have personal detail, social links, skill, experience, and language section)
   - Change layout on every pages (with better understanding of how to work with MUI Grid ...I think)
   #### 10 Mar 2022
   - I have been playing on leetcode so not much update

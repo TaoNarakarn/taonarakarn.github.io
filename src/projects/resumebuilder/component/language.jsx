@@ -203,14 +203,14 @@ function MainComponent (props) {
 }
 
 function AddEntry (props) {
-  const { setLanguage } = props
+  const { setState } = props
   const dataTemplate = {
     language: '',
     level: '',
   }
   const [tempData, setTempData] = useState(dataTemplate)
   const [entryAddCollapse, setEntryAddCollapse] = useState(false)
-  if (entryAddCollapse === false) { return <Button startIcon={<AddCircle />} onClick={() => setEntryAddCollapse(entryAddCollapse => true)}>Add skills</Button> }
+  if (entryAddCollapse === false) { return <Button startIcon={<AddCircle />} onClick={() => setEntryAddCollapse(entryAddCollapse => true)}>Add Language</Button> }
   function handleChange (event) {
     event.preventDefault()
     const { name, value } = event.target
@@ -221,7 +221,7 @@ function AddEntry (props) {
     event.preventDefault()
     setTempData(currentValue => dataTemplate)
     setEntryAddCollapse(() => false)
-    setLanguage(currentValue => ([...currentValue, tempData]))
+    setState(currentValue => ([...currentValue, tempData]))
   }
 
   function handleClearChange (event) {
@@ -267,13 +267,14 @@ function AddEntry (props) {
   )
 }
 
+
 function Language (props) {
   const { state: language, setState: setLanguage } = props
   return (
     <Grid container>
       <Grid item xs={12}>
         <MainComponent language={language} setLanguage={setLanguage} />
-        <AddEntry setLanguage={setLanguage} />
+        <AddEntry setState={setLanguage} />
       </Grid>
     </Grid>
   )

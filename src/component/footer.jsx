@@ -33,6 +33,7 @@ const Footer = (props) => {
           mt: "auto",
           border: 1,
           borderColor: 'divider',
+          displayPrint: 'none'
         }}
       >
         <Container maxWidth="lg">

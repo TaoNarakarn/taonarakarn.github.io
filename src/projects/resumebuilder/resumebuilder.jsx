@@ -10,7 +10,7 @@ import Preview from "./component/preview"
 
 // MUI Import
 import {
-  Grid,
+  Grid, Typography, Paper,
   // Drawer, Box 
 } from "@mui/material"
 
@@ -29,15 +29,34 @@ const personalDetailTemplate = {
   photo: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png',
 }
 
+const visibilityTemplate = {
+  social: true,
+  skill: true,
+  education: true,
+  language: true,
+  certAndLicense: true,
+}
+
+const menuTemplate = {
+  social: {
+    visibility: true,
+    showInEditor: true,
+  },
+}
+
 function ResumeBuilder () {
+  // Visual section
+  const [visibility, setVisibility] = useState(visibilityTemplate)
   const [resumeTheme, setResumeTheme] = useState('') // for resume theme
+
+  // Data section
   const [personalDetail, setPersonalDetail] = useState(personalDetailTemplate) // for photo, name, addresses, about, social and other personal details
   const [social, setSocial] = useState([]) // for social channels using Set
   const [skill, setSkill] = useState([]) // for skills using Set (I should use CSS chips for this and how to do auto suggests?)
   const [experience, setExperience] = useState([]) // for job experience
-  const [education, setEducation] = useState('') // for education
-  const [language, setLanguage] = useState('') // for language skills
-  const [certAndAward, setCertAndAward] = useState('') // for certification and awards
+  const [education, setEducation] = useState([]) // for education
+  const [language, setLanguage] = useState([]) // for language skills
+  const [certAndLicense, setCertAndLicense] = useState([]) // for certification and awards
   return (
     // tried to use context but didn't work
     // <ResumeContext.Provider value={{
@@ -46,24 +65,19 @@ function ResumeBuilder () {
     //   skill, setSkill,
     //   experience, setExperience,
     //   education, setEducation,
-    //   certAndAward, setCertAndAward
+    //   certAndLicense, setCertAndLicense
     // }}>
     <>
-      <Grid container spacing={2} sx={{ padding: 2 }} variant="containerGrid">
+      <Grid container spacing={2} sx={{ padding: 3, }} variant="containerGrid" >
+        <Grid item xs={12} sx={{ displayPrint: 'none' }}>
+          <Paper elevation={3} sx={{ padding: 3 }}>
+            <Typography variant="h4" fontWeight="bold">Resume Builder</Typography>
+            <Typography variant="subtitle1">Type in detail, choose style and print!</Typography>
+          </Paper>
+        </Grid>
         <Grid item xs={12} md={6}>
-          {/* <Drawer
-            variant="persistent"
-            sx={{
-              display: { xs: 'none', sm: 'block' },
-              '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 600 },
-            }}
-            open
-          >
-            <Box
-              component="main"
-              sx={{ flexGrow: 1, p: 3, }}
-            > */}
           <Editor
+            visibility={visibility} setVisibility={setVisibility}
             resumeTheme={resumeTheme} setResumeTheme={setResumeTheme}
             personalDetail={personalDetail} setPersonalDetail={setPersonalDetail}
             social={social} setSocial={setSocial}
@@ -71,12 +85,10 @@ function ResumeBuilder () {
             language={language} setLanguage={setLanguage}
             experience={experience} setExperience={setExperience}
             education={education} setEducation={setEducation}
-            certAndAward={certAndAward} setCertAndAward={setCertAndAward}
+            certAndLicense={certAndLicense} setCertAndLicense={setCertAndLicense}
           />
-          {/* </Box>
-          </Drawer> */}
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={6} >
           <Preview
             resumeTheme={resumeTheme}
             personalDetail={personalDetail}
@@ -85,7 +97,7 @@ function ResumeBuilder () {
             language={language}
             experience={experience}
             education={education}
-            certAndAward={certAndAward}
+            certAndLicense={certAndLicense}
           />
         </Grid>
       </Grid>

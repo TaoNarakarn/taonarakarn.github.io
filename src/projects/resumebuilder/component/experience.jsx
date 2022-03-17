@@ -6,7 +6,7 @@ import { deleteConfirmationDialog } from './staticFunction'
 
 // MUI imports
 import {
-  Typography, Grid, Stack, Button, InputLabel, TextField, Icon, IconButton, FormControl, Select, MenuItem, Collapse,
+  Typography, Grid, Stack, Button, InputLabel, TextField, Icon, IconButton, FormControl, Select, MenuItem, Collapse, Tooltip,
 } from "@mui/material"
 import { AddCircle, DoNotDisturbOn, Cancel } from "@mui/icons-material"
 
@@ -114,19 +114,18 @@ function MainExperience (props) {
   }
 
   return (
-    <Grid item xs={12} sx={{ borderTop: 1, borderColor: 'divider', marginTop: 1, paddingTop: 1 }}>
-      <Typography variant="subtitle1" fontWeight={'bold'}>Experience</Typography>
+    // <Grid item xs={12} sx={{ borderTop: 1, borderColor: 'divider', marginTop: 1, paddingTop: 1 }}>
+    <Grid item>
       {experience.map((exp, index) =>
         <Grid key={index} item xs={12} pt={3} pb={3} sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Collapse in={!editing[index]} >
+          <Collapse in={!editing[index]} sx={{ width: "100%" }}>
             <Grid container>
-              {/* Logo */}
-              <Grid item xs={12} md={2}>
+              <Grid item xs={12} md={2}> {/* Logo */}
                 {(exp.companyLogo === '') ? <Icon>location_city</Icon> :
                   <img src={exp.companyLogo} alt={exp.companyName + ' Logo'} style={{ maxWidth: '80px', maxHeight: '80px' }} />}
                 <br />
-                <IconButton id="editExp" name="editExp" onClick={() => handleEdit(index, 'edit')}><Icon>edit</Icon></IconButton>
-                <IconButton id="deleteExp" name="deleteExp" onClick={() => handleDelete(index, 'delete')}><Icon>delete</Icon></IconButton>
+                <Tooltip title="Edit"><IconButton id="editExp" name="editExp" onClick={() => handleEdit(index)}><Icon>edit</Icon></IconButton></Tooltip>
+                <Tooltip title="Delete"><IconButton id="deleteExp" name="deleteExp" onClick={() => handleDelete(index)}><Icon>delete</Icon></IconButton></Tooltip>
               </Grid>
               <Grid item xs={12} md={10}>
                 <Typography variant="h6" fontWeight="bold">{exp.position} {(exp.companyName !== '') ? " - " : ''}
@@ -171,14 +170,14 @@ function AddExperience (props) {
     setExperience(currentValue => [tempExperience, ...currentValue])
     setTempExperience(experienceTemplate)
   }
-  function handleCancel () {
+  function handleCancelAdd () {
     setAddExperience(false)
     setTempExperience(experienceTemplate)
   }
 
   return (
     <>
-      <Button startIcon={<DoNotDisturbOn />} onClick={handleCancel}>Close</Button>
+      <Button startIcon={<DoNotDisturbOn />} onClick={handleCancelAdd}>Close</Button>
       <Collapse in={addExperience}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -216,7 +215,7 @@ function AddExperience (props) {
           <Grid item xs={12}>
             <Stack direction="row" justifyContent="center" spacing={3}>
               <Button startIcon={<AddCircle />} variant='contained' onClick={handleAdd}>Add</Button>
-              <Button startIcon={<Cancel />} variant='contained' color='warning' onClick={handleCancel}>Cancel</Button>
+              <Button startIcon={<Cancel />} variant='contained' color='warning' onClick={handleCancelAdd}>Cancel</Button>
             </Stack>
           </Grid>
         </Grid>

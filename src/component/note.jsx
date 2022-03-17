@@ -6,7 +6,7 @@ const Note = () => {
           <h3>Leetcode notes</h3>
           <caption>I learn new stuff!</caption>
           <ul>
-            <li>to get sum from series of integer you can use formular (n * (n+1)) /2</li>
+            <li>to get sum from series of unique sorted integer you can use formular (n * (n+1)) /2</li>
             <li>using set.has is much faster than array.find array.findIndex array.indexOf (if array content is unique)</li>
             <li>to look for unique value in sets of pairs [1,1,2,2,3] use bitwise xor num ^= arr[i]</li>
           </ul>

@@ -74,7 +74,7 @@ const UserIcon = (props) => {
   //   setAnchorElUser(null);
   // }
   return (
-    <Box sx={{ flexGrow: 0 }}>
+    <Box sx={{ flexGrow: 0, }}>
       <Stack direction="row" alignItems="center" gap={1}>
         <Icon>dark_mode</Icon>
         <Switch defaultChecked color="default" onChange={() => setTheme(!theme)} />
@@ -118,7 +118,7 @@ function Header (props) {
   }
   return (
     <React.Fragment>
-      <AppBar position="sticky">
+      <AppBar position="sticky" sx={{ displayPrint: 'none' }}>
         <Container maxWidth="x1">
           <Toolbar>
             {/* <Typography
