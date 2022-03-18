@@ -4,7 +4,7 @@ import { socialIcon, skillLevelRate } from './staticFunction'
 
 // MUI import
 import {
-  Grid, Box, Paper, Typography, Link, Stack, Icon,
+  Grid, Box, Paper, Typography, Link, Stack, Icon, Divider
 } from "@mui/material"
 
 
@@ -44,10 +44,24 @@ function skillSection (skill) {
   return (
     <Grid item xs={12} sx={{ borderTop: 1, borderColor: 'divider', marginTop: 1, paddingTop: 1 }}>
       <Typography variant="h6" fontWeight={'bold'}>Skills</Typography>
-      {skill.map((value, index) =>
-        <Typography key={index}>{value.skill}{' - '}{skillLevelRate(value.level)}</Typography>
-      )}
-    </Grid>
+      <Grid container>
+        {skill.map((value, index) => {
+          return (index % 2 === 0) ?
+            <>
+              <Grid item xs={3}><Typography variant='body1'>{value.skill}</Typography></Grid>
+              <Grid item xs={3}>{skillLevelRate(value.level)}</Grid>
+            </>
+            : (index % 2 === 1) ?
+              <>
+                <Divider />
+                <Grid item xs={3}><Typography variant='body1'>{value.skill}</Typography></Grid>
+                <Grid item xs={3}>{skillLevelRate(value.level)}</Grid>
+              </>
+              : null
+        }
+        )}
+      </Grid>
+    </Grid >
   )
 }
 
@@ -82,9 +96,23 @@ function languageSection (language) {
   return (
     <Grid item xs={12} sx={{ borderTop: 1, borderColor: 'divider', marginTop: 1, paddingTop: 1 }}>
       <Typography variant="h6" fontWeight={'bold'}>Language</Typography>
-      {language.map((value, index) =>
-        <Typography key={index}>{value.language}{' - '}{value.level}</Typography>
-      )}
+      <Grid container>
+        {language.map((value, index) => {
+          return (index % 2 === 0) ?
+            <>
+              <Grid item xs={3}><Typography variant='body1'>{value.language}</Typography></Grid>
+              <Grid item xs={3}>{value.level}</Grid>
+            </>
+            : (index % 2 === 1) ?
+              <>
+                <Divider />
+                <Grid item xs={3}><Typography variant='body1'>{value.language}</Typography></Grid>
+                <Grid item xs={3}>{value.level}</Grid>
+              </>
+              : null
+        }
+        )}
+      </Grid>
     </Grid>
   )
 }
@@ -142,13 +170,16 @@ function certAndLicenseSection (certAndLicense) {
 }
 
 // ToDo
-// re arrange skills and language display in preview
 // create a template
 // learn about export to PDF jsPDF? React-PDF?
 // add a style component
+// fix social overlapping with photo
 
 function Preview (props) {
-  const { personalDetail, social, skill, experience, language, education, certAndLicense } = props
+  const {
+    personalDetail, social, skill, experience, language, education, certAndLicense,
+    photoStyle,
+  } = props
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -167,7 +198,9 @@ function Preview (props) {
             </Grid>
 
             <Grid item xs={3} align="right">
-              <img src={personalDetail.photo} alt={personalDetail.fullname} width="185px" height="auto" />
+              <img src={personalDetail.photo} alt={personalDetail.fullname} width="185px" height="auto"
+                style={{ borderRadius: photoStyle.radius }}
+              />
             </Grid>
 
             {aboutSection(personalDetail.about)}

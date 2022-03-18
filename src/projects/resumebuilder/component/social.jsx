@@ -2,18 +2,14 @@
 import { useEffect, useState } from "react"
 
 // component
-import { socialIcon, deleteConfirmationDialog } from './staticFunction'
+import { socialIcon, deleteConfirmationDialog, createLink } from './staticFunction'
 
 // MUI import
 import {
-  Grid, Box, Collapse, Stack, Typography, FormControl, InputLabel, Select, Menu, MenuItem, TextField, Button, IconButton, Icon, Link,
+  Grid, Box, Collapse, Stack, Typography, FormControl, InputLabel, Select, Menu, MenuItem, TextField, Button, IconButton, Icon,
   Table, TableBody, TableRow, TableCell, Tooltip,
 } from "@mui/material"
 import { AddCircle, DoNotDisturbOn, } from "@mui/icons-material"
-
-function createLink (link) {
-  return <Link href={link} target="_blank" rel="noopener noreferrer">{link}</Link>
-}
 
 const socialList = [
   'LinkedIn',

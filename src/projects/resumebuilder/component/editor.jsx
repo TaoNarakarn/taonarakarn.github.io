@@ -1,7 +1,7 @@
 // Core depenencies
 
 // Component import
-import ResumeTheme from './resumeTheme'
+// Detail section
 import PersonalDetail from './personalDetail'
 import Social from './social'
 import Skill from './skill'
@@ -10,6 +10,10 @@ import Education from './education'
 import CertAndLicense from './certAndLicense'
 import Language from './language'
 // import honorAndAward from './honorAndAward'
+// Style section
+import ResumeTheme from './resumeTheme'
+import PhotoStyle from './styleComponent/photoStyle'
+
 
 
 // MUI Import
@@ -32,6 +36,7 @@ function AccordionComponent (props) {
       case 'Education': return <Education state={state} setState={setState} />
       case 'Certification and License': return <CertAndLicense state={state} setState={setState} />
       case 'Resume Theme': return <ResumeTheme state={state} setState={setState} />
+      case 'Photo Style': return <PhotoStyle state={state} setState={setState} />
       default: return null
     }
   }
@@ -53,9 +58,9 @@ function AccordionComponent (props) {
   )
 }
 
-
 function Editor (props) {
   const { resumeTheme, setResumeTheme,
+    photoStyle, setPhotoStyle,
     personalDetail, setPersonalDetail,
     social, setSocial,
     skill, setSkill,
@@ -63,23 +68,25 @@ function Editor (props) {
     experience, setExperience,
     education, setEducation,
     certAndLicense, setCertAndLicense } = props
-
   return (
     <Grid container spacing={3} className="no-print">
       <Grid item xs={12}>
-        <Typography variant='h5' align='center'>Details</Typography>
-        <AccordionComponent title={'Personal Detail'} subTitle={''} state={personalDetail} setState={setPersonalDetail} />
-        <AccordionComponent title={'Social'} subTitle={''} state={social} setState={setSocial} />
-        <AccordionComponent title={'Skill'} subTitle={''} state={skill} setState={setSkill} />
-        <AccordionComponent title={'Experience'} subTitle={'Job Experience'} state={experience} setState={setExperience} />
-        <AccordionComponent title={'Language'} subTitle={''} state={language} setState={setLanguage} />
-        <AccordionComponent title={'Education'} subTitle={''} state={education} setState={setEducation} />
-        <AccordionComponent title={'Certification and License'} subTitle={''} state={certAndLicense} setState={setCertAndLicense} />
+        <Paper elevation={3} sx={{ padding: 3 }}>
+          <Typography variant='h5' align='center'>Details</Typography>
+          <AccordionComponent title={'Personal Detail'} subTitle={''} state={personalDetail} setState={setPersonalDetail} />
+          <AccordionComponent title={'Social'} subTitle={''} state={social} setState={setSocial} />
+          <AccordionComponent title={'Skill'} subTitle={''} state={skill} setState={setSkill} />
+          <AccordionComponent title={'Experience'} subTitle={'Job Experience'} state={experience} setState={setExperience} />
+          <AccordionComponent title={'Language'} subTitle={''} state={language} setState={setLanguage} />
+          <AccordionComponent title={'Education'} subTitle={''} state={education} setState={setEducation} />
+          <AccordionComponent title={'Certification and License'} subTitle={''} state={certAndLicense} setState={setCertAndLicense} />
+        </Paper>
       </Grid>
       <Grid item xs={12}>
         <Paper elevation={3} sx={{ padding: 3 }}>
           <Typography variant='h5' align='center'>Style</Typography>
           <AccordionComponent title={'Resume Theme'} subTitle={'Choose theme'} state={resumeTheme} setState={setResumeTheme} />
+          <AccordionComponent title={'Photo Style'} subTitle={'Change photo looks'} state={photoStyle} setState={setPhotoStyle} />
         </Paper>
       </Grid>
       <Grid item xs={12}>

@@ -37,17 +37,24 @@ const visibilityTemplate = {
   certAndLicense: true,
 }
 
-const menuTemplate = {
-  social: {
-    visibility: true,
-    showInEditor: true,
-  },
+const photoStyleTemplate = {
+  radius: 1,
+  width: '',
+  height: '',
 }
+
+// const menuTemplate = {
+//   social: {
+//     visibility: true,
+//     showInEditor: true,
+//   },
+// }
 
 function ResumeBuilder () {
   // Visual section
   const [visibility, setVisibility] = useState(visibilityTemplate)
   const [resumeTheme, setResumeTheme] = useState('') // for resume theme
+  const [photoStyle, setPhotoStyle] = useState(photoStyleTemplate) // for Photo Style
 
   // Data section
   const [personalDetail, setPersonalDetail] = useState(personalDetailTemplate) // for photo, name, addresses, about, social and other personal details
@@ -86,6 +93,7 @@ function ResumeBuilder () {
             experience={experience} setExperience={setExperience}
             education={education} setEducation={setEducation}
             certAndLicense={certAndLicense} setCertAndLicense={setCertAndLicense}
+            photoStyle={photoStyle} setPhotoStyle={setPhotoStyle}
           />
         </Grid>
         <Grid item xs={12} md={6} >
@@ -98,6 +106,7 @@ function ResumeBuilder () {
             experience={experience}
             education={education}
             certAndLicense={certAndLicense}
+            photoStyle={photoStyle}
           />
         </Grid>
       </Grid>

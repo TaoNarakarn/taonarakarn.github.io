@@ -5,14 +5,18 @@ Project mostly done on local server
 
 ## what I wanted to do? (todos)
   - [ ] Connect to backend by using Amazon lambda
+  - [ ] Playing with more APIs: JWTs
   - [ ] Favicon still need to change, its still create react app default (I don't have any design in mind)
   - [ ] Add more stuff in codebits
   - [x] Performance issue when update array of object state (its input is lag without helping library) : I fix this by create temporary state and merge them back when saved
-  - [ ] Design a bunch more stuff (resume builder: template, style editor, data entry)
-  - [ ] Playing with more APIs: JWTs
+  - [ ] Design a bunch more stuff (resume builder: template, style editor, data entry(done))
+
 
 ## What I did (dev log)
 I'll try to update this log as much as I can :)
+  #### 18 Mar 2022
+  - Fix layout of language and skill in preview
+  - Add simple version of photo border selector
   #### 17 Mar 2022
   - Add Education and Certification section to resume builder
   - Make more reuseable component in the backend so that if we need new component we can add it faster

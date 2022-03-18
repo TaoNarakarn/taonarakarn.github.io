@@ -47,23 +47,23 @@ export function signalLevel (level) {
 }
 
 
-export function ComponentMenu (props) { // settings menu *** experimental ***
-  const { componentName } = props
-  const [visibility, setVisibility] = useState(true)
-  // const { setVisible, setPosition, setShowInEditor } = props
-  function setVisible () {
-    console.log('visibility toggle')
-    setVisibility(visibility => !visibility)
-  }
-  return (
-    <Grid container>
-      <Grid item xs={12} display='flex' justifyContent='flex-end'>
-        <Tooltip title="Show in preview"><IconButton id="edit" name="edit" onClick={setVisible}><Icon>{visibility ? 'visibility' : 'visibility_off'}</Icon></IconButton></Tooltip>
-        <Button>remove block</Button>
-      </Grid>
-    </Grid>
-  )
-}
+// export function ComponentMenu (props) { // settings menu *** experimental ***
+//   const { componentName } = props
+//   const [visibility, setVisibility] = useState(true)
+//   // const { setVisible, setPosition, setShowInEditor } = props
+//   function setVisible () {
+//     console.log('visibility toggle')
+//     setVisibility(visibility => !visibility)
+//   }
+//   return (
+//     <Grid container>
+//       <Grid item xs={12} display='flex' justifyContent='flex-end'>
+//         <Tooltip title="Show in preview"><IconButton id="edit" name="edit" onClick={setVisible}><Icon>{visibility ? 'visibility' : 'visibility_off'}</Icon></IconButton></Tooltip>
+//         <Button>remove block</Button>
+//       </Grid>
+//     </Grid>
+//   )
+// }
 
 /**
  * When click delete on entry, will popup confirmation dialog, Use in conjunction with deleteConfirmationDialog function
