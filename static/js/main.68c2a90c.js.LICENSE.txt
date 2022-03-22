@@ -26,6 +26,8 @@ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 
+/*! For license information please see index.js.LICENSE.txt */
+
 /**
  * React Router v6.2.2
  *
