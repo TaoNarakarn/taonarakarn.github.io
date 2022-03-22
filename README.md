@@ -14,6 +14,10 @@ Project mostly done on local server
 
 ## What I did (dev log)
 I'll try to update this log as much as I can :)
+  #### 22 Mar 2022
+  - Create resume template in codebits
+  - Add button to print only resume component
+  - I've been playing on codewars if someone interest (link)[https://www.codewars.com/]
   #### 18 Mar 2022
   - Fix layout of language and skill in preview
   - Add simple version of photo border selector

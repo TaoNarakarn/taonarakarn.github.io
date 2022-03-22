@@ -3,7 +3,6 @@
 import {
   Grid, Typography, Paper, RadioGroup, Radio
 } from '@mui/material'
-
 let imgSrc = 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
 function PhotoStyle (props) {
   const { state: photoStyle, setState: setPhotoStyle } = props
@@ -21,13 +20,13 @@ function PhotoStyle (props) {
             <Grid item xs={4}>
               {/* <Radio id="radius" name="radius" onClick={(event) => handleChange(event, 1)} />
               <label htmlFor="radius"><img src={imgSrc} alt="preview" width="40%" height="auto" /></label> */}
-              <img id="radius" name="radius" src={imgSrc} alt="preview" width="40%" height="auto" onClick={(event) => handleChange(event, 1)} />
+              <img id="radius" name="radius" className="imageStyle" src={imgSrc} alt="preview" width="40%" height="auto" onClick={(event) => handleChange(event, 1)} />
             </Grid>
             <Grid item xs={4}>
-              <img id="radius" name="radius" src={imgSrc} alt="preview" width="40%" height="auto" onClick={(event) => handleChange(event, 30)} style={{ borderRadius: 30 }} />
+              <img id="radius" name="radius" className="imageStyle" src={imgSrc} alt="preview" width="40%" height="auto" onClick={(event) => handleChange(event, 30)} style={{ borderRadius: 30 }} />
             </Grid>
             <Grid item xs={4}>
-              <img id="radius" name="radius" src={imgSrc} alt="preview" width="40%" height="auto" onClick={(event) => handleChange(event, '50%')} style={{ borderRadius: '50%' }} />
+              <img id="radius" name="radius" className="imageStyle" src={imgSrc} alt="preview" width="40%" height="auto" onClick={(event) => handleChange(event, '50%')} style={{ borderRadius: '50%' }} />
             </Grid>
           </RadioGroup>
         </Grid>
