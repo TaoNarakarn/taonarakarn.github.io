@@ -1,16 +1,12 @@
-
+import React, { useEffect, useRef } from 'react'
 // static component
-import { socialIcon, skillLevelRate } from './staticFunction'
+import { socialIcon, skillLevelRate } from '../staticFunction'
+import { dummyData } from './dummyData'
 
 // MUI import
 import {
   Grid, Box, Paper, Typography, Link, Stack, Icon, Divider
 } from "@mui/material"
-
-
-// function resumeOrder (props) {
-
-// }
 
 const socialSection = (social) => {
   if (social === undefined || social.length === 0) { return null }
@@ -39,7 +35,7 @@ function aboutSection (about) {
   )
 }
 
-function skillSection (skill) {
+function skillSection (skill, skillStyle) {
   if (skill === undefined || skill.length === 0) { return null }
   return (
     <Grid item xs={12} sx={{ borderTop: 1, borderColor: 'divider', marginTop: 1, paddingTop: 1 }}>
@@ -47,16 +43,18 @@ function skillSection (skill) {
       <Grid container>
         {skill.map((value, index) => {
           return (index % 2 === 0) ?
-            <>
+            <React.Fragment key={index}>
               <Grid item xs={3}><Typography variant='body1'>{value.skill}</Typography></Grid>
-              <Grid item xs={3}>{skillLevelRate(value.level)}</Grid>
-            </>
+              {skillStyle.displayType === 'circle' ? <Grid item xs={3}>{skillLevelRate(value.level, skillStyle.displayType)}</Grid>
+                : <Grid item xs={3} align='center' sx={{ paddingTop: 1.275, paddingRight: 1 }}>{skillLevelRate(value.level, skillStyle.displayType)}</Grid>}
+            </React.Fragment>
             : (index % 2 === 1) ?
-              <>
+              <React.Fragment key={index}>
                 <Divider />
                 <Grid item xs={3}><Typography variant='body1'>{value.skill}</Typography></Grid>
-                <Grid item xs={3}>{skillLevelRate(value.level)}</Grid>
-              </>
+                {skillStyle.displayType === 'circle' ? <Grid item xs={3}>{skillLevelRate(value.level, skillStyle.displayType)}</Grid>
+                  : <Grid item xs={3} align='center' sx={{ paddingTop: 1.275, paddingRight: 1 }}>{skillLevelRate(value.level, skillStyle.displayType)}</Grid>}
+              </React.Fragment>
               : null
         }
         )}
@@ -65,11 +63,37 @@ function skillSection (skill) {
   )
 }
 
+function languageSection (language) {
+  if (language === undefined || language.length === 0) { return null }
+  return (
+    <Grid item xs={12} sx={{ borderTop: 1, borderColor: 'divider', marginTop: 1, paddingTop: 1 }}>
+      <Typography variant="h6" fontWeight={'bold'}>Language</Typography>
+      <Grid container>
+        {language.map((value, index) => {
+          return (index % 2 === 0) ?
+            <React.Fragment key={index}>
+              <Grid item xs={3}><Typography variant='body1'>{value.language}</Typography></Grid>
+              <Grid item xs={3}>{value.level}</Grid>
+            </React.Fragment>
+            : (index % 2 === 1) ?
+              <React.Fragment key={index}>
+                <Divider />
+                <Grid item xs={3}><Typography variant='body1'>{value.language}</Typography></Grid>
+                <Grid item xs={3}>{value.level}</Grid>
+              </React.Fragment>
+              : null
+        }
+        )}
+      </Grid>
+    </Grid>
+  )
+}
+
 function experienceSection (experience) {
   if (experience === undefined || experience.length === 0) { return null }
   return (
     <Grid item xs={12} sx={{ borderTop: 1, borderColor: 'divider', marginTop: 1, paddingTop: 1 }}>
-      <Typography variant="h6" fontWeight={'bold'}>Experience</Typography>
+      <Typography variant="h6" fontWeight={'bold'}>Work Experience</Typography>
       {experience.map((exp, index) =>
         <Grid item xs={12} key={index} pt={3} pb={3} sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Grid container>
@@ -87,32 +111,6 @@ function experienceSection (experience) {
             </Grid>
           </Grid>
         </Grid>)}
-    </Grid>
-  )
-}
-
-function languageSection (language) {
-  if (language === undefined || language.length === 0) { return null }
-  return (
-    <Grid item xs={12} sx={{ borderTop: 1, borderColor: 'divider', marginTop: 1, paddingTop: 1 }}>
-      <Typography variant="h6" fontWeight={'bold'}>Language</Typography>
-      <Grid container>
-        {language.map((value, index) => {
-          return (index % 2 === 0) ?
-            <>
-              <Grid item xs={3}><Typography variant='body1'>{value.language}</Typography></Grid>
-              <Grid item xs={3}>{value.level}</Grid>
-            </>
-            : (index % 2 === 1) ?
-              <>
-                <Divider />
-                <Grid item xs={3}><Typography variant='body1'>{value.language}</Typography></Grid>
-                <Grid item xs={3}>{value.level}</Grid>
-              </>
-              : null
-        }
-        )}
-      </Grid>
     </Grid>
   )
 }
@@ -169,22 +167,18 @@ function certAndLicenseSection (certAndLicense) {
   )
 }
 
-// ToDo
-// create a template
-// learn about export to PDF jsPDF? React-PDF?
-// add a style component
-// fix social overlapping with photo
-
-function Preview (props) {
-  const {
-    personalDetail, social, skill, experience, language, education, certAndLicense,
-    photoStyle,
-  } = props
+function DefaultTheme (props) {
+  const resumeRef = useRef()
+  const { personalDetail, social, skill, experience, language, education, certAndLicense } = props.data
+  // const { personalDetail, social, skill, experience, language, education, certAndLicense } = dummyData
+  const { setResumeTheme, photoStyle, skillStyle } = props.style
+  useEffect(() => {
+    setResumeTheme(current => ({ ...current, ref: resumeRef.current }))
+  }, [setResumeTheme])
   return (
     <Grid container>
       <Grid item xs={12}>
-        <Typography variant="h5" align="center" sx={{ displayPrint: 'none' }}>Preview</Typography>
-        <Paper sx={{ padding: 4 }} elevation={6} className='a4'>
+        <Paper sx={{ padding: 4 }} elevation={6} className='a4' ref={resumeRef}>
           <Grid container>
             <Grid item xs={9}>
               <Typography variant="subtitle2" color="gray">{personalDetail.address}</Typography>
@@ -192,21 +186,19 @@ function Preview (props) {
               <Typography variant="subtitle2" fontWeight="bold">{personalDetail.tel}</Typography>
               <Typography variant="subtitle2" fontWeight="bold">{personalDetail.email}</Typography>
               <br />
-              <Typography variant="h5">{personalDetail.fullname}</Typography>
+              <Typography variant="h4" fontWeight='bold'>{personalDetail.fullname}</Typography>
               <Typography variant="subtitle2">{personalDetail.caption}</Typography>
               {socialSection(social)}
             </Grid>
-
             <Grid item xs={3} align="right">
-              <img src={personalDetail.photo} alt={personalDetail.fullname} width="185px" height="auto"
-                style={{ borderRadius: photoStyle.radius }}
+              <img src={personalDetail.photo} alt={personalDetail.fullname} height="auto"
+                style={{ borderRadius: photoStyle.radius, width: photoStyle.width }}
               />
             </Grid>
-
             {aboutSection(personalDetail.about)}
-            {skillSection(skill)}
-            {experienceSection(experience)}
+            {skillSection(skill, skillStyle)}
             {languageSection(language)}
+            {experienceSection(experience)}
             {educationSection(education)}
             {certAndLicenseSection(certAndLicense)}
           </Grid>
@@ -216,4 +208,4 @@ function Preview (props) {
   )
 }
 
-export default Preview
+export default DefaultTheme

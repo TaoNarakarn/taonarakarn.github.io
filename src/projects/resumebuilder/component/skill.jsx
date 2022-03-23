@@ -173,8 +173,8 @@ function SkillSection (props) { // list of skills
               onChange={handleSkillChange}
               placeholder="Skill level"
             >
-              {skillLevelList.map((value) =>
-                <MenuItem key={value} value={value}>{value}</MenuItem>
+              {skillLevelList.map((value, index) =>
+                <MenuItem key={index} value={index + 1}>{value}</MenuItem>
               )}
             </Select>
           </FormControl>
@@ -261,8 +261,8 @@ function AddSkillCollapse (props) { // add skill to the list (cancel button will
                 onChange={handleSkillChange}
                 placeholder="Skill level"
               >
-                {skillLevelList.map((value) =>
-                  <MenuItem key={value} value={value}>{value}</MenuItem>
+                {skillLevelList.map((value, index) =>
+                  <MenuItem key={index} value={index + 1}>{value}</MenuItem>
                 )}
               </Select>
             </FormControl>

@@ -6,7 +6,6 @@ import PropTypes from 'prop-types'
 import RandomUser from '../bitsandpieces/randomuser'
 // import AWSLambda from '../bitsandpieces/awslambda'
 import ChartJS from '../bitsandpieces/chartjs'
-import RbTemplate1 from '../bitsandpieces/rb_template_1'
 
 // MUI imports
 import { Typography, Grid, Box, Tabs, Tab, Divider } from "@mui/material"
@@ -72,7 +71,7 @@ const CodeBits = () => {
           <Tabs value={tab} onChange={handleTabChange} variant="scrollable" scrollButtons="auto" aria-label="bitsandpieces-tabs" >
             <Tab label="Get data from API" {...a11yProps(0)} />
             <Tab label="Chart JS" {...a11yProps(1)} />
-            <Tab label="Resume template" {...a11yProps(2)} />
+            <Tab label="" {...a11yProps(2)} />
             {/* <Tab label="AWS Lambda nodejs API" {...a11yProps(2)} /> */}
           </Tabs>
         </Box>
@@ -86,7 +85,7 @@ const CodeBits = () => {
           <AWSLambda />
         </TabPanel> */}
         <TabPanel value={tab} index={2}>
-          <RbTemplate1 />
+
         </TabPanel>
         {/* <TabPanel value={tab} index={3}>
         <Typography>Coming soon</Typography>

@@ -100,22 +100,22 @@ const experience = [
   },
 ]
 
-let template = [
-  {
-    company: {
-      name: '',
-      logo: '',
-      website: '',
-    },
-    position: '',
-    location: 'Bangkok, Thailand',
-    from: '',
-    to: '',
-    workHere: false,
-    description: [
-      '',
-    ],
-  },
-]
+// let template = [
+//   {
+//     company: {
+//       name: '',
+//       logo: '',
+//       website: '',
+//     },
+//     position: '',
+//     location: 'Bangkok, Thailand',
+//     from: '',
+//     to: '',
+//     workHere: false,
+//     description: [
+//       '',
+//     ],
+//   },
+// ]
 
 export default experience

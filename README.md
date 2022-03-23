@@ -5,19 +5,28 @@ Project mostly done on local server
 
 ## what I wanted to do? (todos)
   - [ ] Connect to backend by using Amazon lambda
-  - [ ] Playing with more APIs: JWTs
+  - [ ] Playing with more APIs: JWTs, supertoken
   - [ ] Favicon still need to change, its still create react app default (I don't have any design in mind)
   - [ ] Add more stuff in codebits
   - [x] Performance issue when update array of object state (its input is lag without helping library) : I fix this by create temporary state and merge them back when saved
-  - [ ] Design a bunch more stuff (resume builder: template, style editor, data entry(done))
+  - [ ] Design a bunch more stuff (resume builder: template(3 done), style editor, data entry(done))
 
 
 ## What I did (dev log)
 I'll try to update this log as much as I can :)
+  #### 23 Mar 2022
+  - Add print button in resume builder (still need to figure out how to save it as PDF directly)
+  - Add more theme with very creative name "Theme 2"
+  - Add theme switching component
+  - Add skill level display style component
+  - Move theme1 from codebits to marge with resume builder
+  - fix more typos
   #### 22 Mar 2022
+  - Add more ways to play with photo in the resume builder
   - Create resume template in codebits
   - Add button to print only resume component
-  - I've been playing on codewars if someone interest (link)[https://www.codewars.com/]
+  - Add react-to-print package to support printing
+  - I've been playing on codewars, if anyone interest [link](https://www.codewars.com/)
   #### 18 Mar 2022
   - Fix layout of language and skill in preview
   - Add simple version of photo border selector

@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import ReactToPrint from 'react-to-print'
 
-
 import { Divider, Grid, Paper, Typography, Link, Stack, Icon, Button } from '@mui/material'
 import { Email, Phone } from '@mui/icons-material'
 import { skillLevelRate } from '../projects/resumebuilder/component/staticFunction'
@@ -9,7 +8,7 @@ import { socialIcon } from '../projects/resumebuilder/component/staticFunction'
 // import experience from "../staticValue/experience"
 
 
-// Data
+// Dummy
 const personalDetail = {
   fullname: 'John Doe',
   email: 'johndoe@example.com',
@@ -22,7 +21,6 @@ const personalDetail = {
   about: 'this is just a test for the template\n which you can see that it has many lines\n and I can make it even longer\n for the sake of it!',
   photo: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png',
 }
-
 const experience = [
   {
     company: {
@@ -77,12 +75,32 @@ const experience = [
     ],
   },
 ]
-
+const education = [
+  {
+    place: 'Oxford',
+    logo: '',
+    from: '2026',
+    to: '2028',
+    degree: 'Master',
+    major: 'Of laziness',
+    grade: '3.98',
+    activities: 'I did nothing cuz lazy',
+  },
+  {
+    place: 'MIT',
+    logo: '',
+    from: '2022',
+    to: '2026',
+    degree: 'Bachalor',
+    major: 'Of slacking',
+    grade: '2.87',
+    activities: 'I did the slacking stuff',
+  },
+]
 const social = [
   { platform: 'LinkedIn', link: 'https://linkedin.com' },
   { platform: 'GitHub', link: 'https://github.com' }
 ]
-
 const skill = [
   { skill: 'Java Script', level: 'Average' },
   { skill: 'ReactJS', level: 'Skilled' }
@@ -91,9 +109,8 @@ const skill = [
 
 // Style
 const leftPane = {
-  // backgroundColor: '#5e6fbcb8',
   backgroundColor: 'rgb(226, 196, 155, 0.46)',
-  // height: '29.7cm',
+  minHeight: '29.7cm',
   padding: '1.5rem'
 }
 
@@ -146,7 +163,7 @@ function socialBlock () {
       <Typography variant='h6'>Social</Typography>
       {social.map((value, index) =>
         <Typography key={index} variant="body1">
-          <Link href={value.link} underline="hover" target="_blank" rel="noopener noreferrer" color="inherit"><Stack direction="row" gap={1}>{socialIcon(value.platform)} {value.platform}</Stack></Link>
+          <Link href={value.link} underline="hover" target="_blank" rel="noopener noreferrer" color="inherit">{socialIcon(value.platform)} {value.platform}</Link>
         </Typography>
       )}
     </Grid>

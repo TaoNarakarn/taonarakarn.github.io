@@ -11,10 +11,9 @@ import CertAndLicense from './certAndLicense'
 import Language from './language'
 // import honorAndAward from './honorAndAward'
 // Style section
-import ResumeTheme from './resumeTheme'
+import ResumeTheme from './styleComponent/resumeTheme'
 import PhotoStyle from './styleComponent/photoStyle'
-
-
+import SkillStyle from './styleComponent/skillStyle'
 
 // MUI Import
 import {
@@ -37,6 +36,7 @@ function AccordionComponent (props) {
       case 'Certification and License': return <CertAndLicense state={state} setState={setState} />
       case 'Resume Theme': return <ResumeTheme state={state} setState={setState} />
       case 'Photo Style': return <PhotoStyle state={state} setState={setState} />
+      case 'Skill Style': return <SkillStyle state={state} setState={setState} />
       default: return null
     }
   }
@@ -59,8 +59,10 @@ function AccordionComponent (props) {
 }
 
 function Editor (props) {
-  const { resumeTheme, setResumeTheme,
+  const {
+    resumeTheme, setResumeTheme,
     photoStyle, setPhotoStyle,
+    skillStyle, setSkillStyle,
     personalDetail, setPersonalDetail,
     social, setSocial,
     skill, setSkill,
@@ -72,7 +74,6 @@ function Editor (props) {
     <Grid container spacing={3} className="no-print">
       <Grid item xs={12}>
         <Paper elevation={3} sx={{ padding: 3 }}>
-          <Typography variant='h5' align='center'>Details</Typography>
           <AccordionComponent title={'Personal Detail'} subTitle={''} state={personalDetail} setState={setPersonalDetail} />
           <AccordionComponent title={'Social'} subTitle={''} state={social} setState={setSocial} />
           <AccordionComponent title={'Skill'} subTitle={''} state={skill} setState={setSkill} />
@@ -85,14 +86,10 @@ function Editor (props) {
       <Grid item xs={12}>
         <Paper elevation={3} sx={{ padding: 3 }}>
           <Typography variant='h5' align='center'>Style</Typography>
+          <Typography variant='body1' sx={{ marginTop: 1, marginBottom: 1 }}>Here you can edit resume style from color to photo size and shape</Typography>
           <AccordionComponent title={'Resume Theme'} subTitle={'Choose theme'} state={resumeTheme} setState={setResumeTheme} />
           <AccordionComponent title={'Photo Style'} subTitle={'Change photo looks'} state={photoStyle} setState={setPhotoStyle} />
-        </Paper>
-      </Grid>
-      <Grid item xs={12}>
-        <Paper elevation={3} sx={{ padding: 3 }}>
-          <Typography variant='h5' align='center'>ToDos</Typography>
-          Style editor
+          <AccordionComponent title={'Skill Style'} subTitle={'Change skill looks'} state={skillStyle} setState={setSkillStyle} />
         </Paper>
       </Grid>
     </Grid>

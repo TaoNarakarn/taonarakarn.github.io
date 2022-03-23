@@ -31,7 +31,7 @@ function Project () {
                 <Typography variant="h5" fontWeight="bold">Resume Builder</Typography>
                 <br />
                 <Typography variant="subtitle1">I started this project beacuse, many "free resume" website are free to create but charge you when you wanted to download them</Typography>
-                <Typography variant="subtitle1" fontWeight={'bold'}>*** this project is still workin progress ***</Typography>
+                <Typography variant="subtitle1" fontWeight={'bold'}>*** this project is work in progress ***</Typography>
                 <br />
                 <Button href="/#/project/resume-builder">Go to project</Button>
               </CardContent>

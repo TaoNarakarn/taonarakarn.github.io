@@ -151,8 +151,6 @@ function MainComponent (props) {
   )
 }
 
-
-
 function CertAndLicense (props) {
   const { state: certAndLicense, setState: setCertAndLicense } = props
   return (

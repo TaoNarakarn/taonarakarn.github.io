@@ -3,12 +3,13 @@ import { useState } from 'react'
 import {
   Grid, Stack, Collapse, Button, Link, Rating, Tooltip, Icon, IconButton,
   Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions,
+  LinearProgress,
 } from '@mui/material'
 import {
   AddCircle, DoNotDisturbOn, Cancel,
-  Facebook, Instagram, LinkedIn, Pinterest, Reddit, Twitter, YouTube, Public,
+  Facebook, Instagram, LinkedIn, Pinterest, Reddit, Twitter, YouTube, Public, GitHub,
   Circle, CircleOutlined,
-  SignalCellular0Bar, SignalCellular1Bar, SignalCellular2Bar, SignalCellular3Bar, SignalCellular4Bar, GitHub
+  SignalCellular0Bar, SignalCellular1Bar, SignalCellular2Bar, SignalCellular3Bar, SignalCellular4Bar,
 } from '@mui/icons-material'
 
 export const socialIcon = (platform) => {
@@ -25,15 +26,27 @@ export const socialIcon = (platform) => {
   }
 }
 
-export function skillLevelRate (level) {
-  switch (level) {
-    case 'Beginner': return <Rating value={1} readOnly size="small" icon={<Circle fontSize="small " />} emptyIcon={<CircleOutlined fontSize="inherit" />} />
-    case 'Average': return <Rating value={2} readOnly size="small" icon={<Circle fontSize="inherit" />} emptyIcon={<CircleOutlined fontSize="inherit" />} />
-    case 'Skilled': return <Rating value={3} readOnly size="small" icon={<Circle fontSize="inherit" />} emptyIcon={<CircleOutlined fontSize="inherit" />} />
-    case 'Speacialst': return <Rating value={4} readOnly size="small" icon={<Circle fontSize="inherit" />} emptyIcon={<CircleOutlined fontSize="inherit" />} />
-    case 'Expert': return <Rating value={5} readOnly size="small" icon={<Circle fontSize="inherit" />} emptyIcon={<CircleOutlined fontSize="inherit" />} />
-    default: return <Rating value={0} readOnly size="small" icon={<Circle fontSize="inherit" />} emptyIcon={<CircleOutlined fontSize="inherit" />} />
+export function skillLevelRate (level, displayType) {
+  if (displayType === 'circle') {
+    switch (level) {
+      case 1: return <Rating value={1} readOnly size="small" icon={<Circle fontSize="small " />} emptyIcon={<CircleOutlined fontSize="inherit" />} />
+      case 2: return <Rating value={2} readOnly size="small" icon={<Circle fontSize="inherit" />} emptyIcon={<CircleOutlined fontSize="inherit" />} />
+      case 3: return <Rating value={3} readOnly size="small" icon={<Circle fontSize="inherit" />} emptyIcon={<CircleOutlined fontSize="inherit" />} />
+      case 4: return <Rating value={4} readOnly size="small" icon={<Circle fontSize="inherit" />} emptyIcon={<CircleOutlined fontSize="inherit" />} />
+      case 5: return <Rating value={5} readOnly size="small" icon={<Circle fontSize="inherit" />} emptyIcon={<CircleOutlined fontSize="inherit" />} />
+      default: return <Rating value={0} readOnly size="small" icon={<Circle fontSize="inherit" />} emptyIcon={<CircleOutlined fontSize="inherit" />} />
+    }
+  } else if (displayType === 'line') {
+    switch (level) {
+      case 1: return <LinearProgress variant="determinate" value={20} />
+      case 2: return <LinearProgress variant="determinate" value={40} />
+      case 3: return <LinearProgress variant="determinate" value={60} />
+      case 4: return <LinearProgress variant="determinate" value={80} />
+      case 5: return <LinearProgress variant="determinate" value={100} />
+      default: return <LinearProgress variant="determinate" value={0} />
+    }
   }
+
 }
 
 export function signalLevel (level) {
