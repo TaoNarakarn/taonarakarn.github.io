@@ -1,10 +1,11 @@
 {
   "files": {
-    "main.css": "/static/css/main.9a592b5e.css",
-    "main.js": "/static/js/main.6a5516d2.js",
+    "main.css": "/static/css/main.903cb1f5.css",
+    "main.js": "/static/js/main.7aaf28c2.js",
     "static/js/787.1ed0c42c.chunk.js": "/static/js/787.1ed0c42c.chunk.js",
     "static/media/meHeaderSmall.png": "/static/media/meHeaderSmall.1796772c547b92d81c01.png",
     "static/media/googlecert.png": "/static/media/googlecert.139ddfb8143027497091.png",
+    "static/media/portraitPlaceholder.png": "/static/media/portraitPlaceholder.157f088b56f86d22066e.png",
     "static/media/RbTheme1_Thumbnail.jpg": "/static/media/RbTheme1_Thumbnail.96a4af5d765633bc5e6e.jpg",
     "static/media/default_Thumbnail.jpg": "/static/media/default_Thumbnail.a9e981087057649b553b.jpg",
     "static/media/RbTheme2_Thumbnail.jpg": "/static/media/RbTheme2_Thumbnail.6de7ed9fb841e083b187.jpg",
@@ -12,12 +13,12 @@
     "static/media/docximport.jpg": "/static/media/docximport.6007a31eae3b21baefcf.jpg",
     "static/media/ResumeBuilderLogo.jpg": "/static/media/ResumeBuilderLogo.ce0c94017dd22dcdbe81.jpg",
     "index.html": "/index.html",
-    "main.9a592b5e.css.map": "/static/css/main.9a592b5e.css.map",
-    "main.6a5516d2.js.map": "/static/js/main.6a5516d2.js.map",
+    "main.903cb1f5.css.map": "/static/css/main.903cb1f5.css.map",
+    "main.7aaf28c2.js.map": "/static/js/main.7aaf28c2.js.map",
     "787.1ed0c42c.chunk.js.map": "/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9a592b5e.css",
-    "static/js/main.6a5516d2.js"
+    "static/css/main.903cb1f5.css",
+    "static/js/main.7aaf28c2.js"
   ]
 }
