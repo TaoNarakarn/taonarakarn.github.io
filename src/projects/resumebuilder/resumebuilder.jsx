@@ -1,6 +1,11 @@
 // Dependencies
 import { useState, } from "react"
 import ReactToPrint from 'react-to-print'
+// import jsPDF from 'jspdf'
+// import html2canvas from 'html2canvas'
+
+// image
+import portraitPlaceholder from './image/portraitPlaceholder.png'
 
 // Component import
 import Editor from "./component/editor"
@@ -10,8 +15,8 @@ import RbTheme2 from "./component/theme/RbTheme2"
 
 // MUI Import
 import {
-  Grid, Typography, Paper, Button
-  // Drawer, Box 
+  Grid, Typography, Paper, Button, Box
+  // Drawer
 } from "@mui/material"
 
 // export const ResumeContext = createContext(null)
@@ -26,7 +31,7 @@ const personalDetailTemplate = {
   country: '',
   tel: '',
   about: '',
-  photo: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png',
+  photo: portraitPlaceholder,
 }
 
 const resumeThemeTemplate = {
@@ -61,11 +66,15 @@ const skillStyleTemplate = {
 // }
 
 // ToDo
-// create a template done 1 need 2 more
-// switching template
-// learn about export to PDF jsPDF? React-PDF? (I can print now but user still need to click save to PDF from their printing page)
 // add a style component (font family, size and color)
-// change from hotlink to image to upload image to browser local storage
+// fix print not goes all the way to end of the last page
+// default style value for each theme
+// create a template done 2 fix default ones to looks better then add 1 more
+// learn about export to PDF jsPDF? React-PDF? (I can print now but user still need to click save to PDF from their printing page)
+
+// Loading logo on home page
+// learn framer-motion
+// change from hotlink to image to upload image to browser local storage (client side)
 
 function ResumeBuilder () {
   // Visual section
@@ -94,6 +103,7 @@ function ResumeBuilder () {
   }
   const styleBundle = {
     setResumeTheme,
+    resumeTheme,
     componentVisibility,
     photoStyle,
     skillStyle
@@ -109,14 +119,51 @@ function ResumeBuilder () {
 
   function previewMenu () {
     if (resumeTheme.ref === undefined) { return null }
+    // function handleSavetoPDF () {
+    //   let doc = new jsPDF()
+    //   doc.html(resumeTheme.ref, {
+    //     callback: function (pdf) {
+    //       pdf.save('test.pdf')
+    //     }
+    //   })
+    //   // html2canvas(resumeTheme.ref,{ scale: 3 }).then((canvas) => {
+
+    //   //   document.body.appendChild(canvas)
+    //   //   console.log(canvas)
+    //   //   // let doc = new jsPDF()
+    //   //   // doc.html(canvas, { callback: function (pdf) { pdf.save('resume.pdf') } })
+    //   // })
+    // }
+    const pageStyle = `
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0mm;
+      }
+      .print-container {
+        margin: 0px;
+        margin-top: 0px;
+        -webkit-print-color-adjust: exact;
+      }
+      .print-fullpage-element {
+        height: 100%;
+      }
+    }
+    `
     return (
-      <Grid item xs={12} mb={3}>
-        <ReactToPrint
-          content={() => resumeTheme.ref}
-          removeAfterPrint
-          trigger={() => <Button variant="contained">Print</Button>}
-        />
-      </Grid>
+      <Paper sx={{ padding: 1, marginBottom: 3 }}>
+        <Grid item xs={12}>
+          <Box sx={{ display: 'flex', flexGrow: 1 }}>
+            <ReactToPrint
+              content={() => resumeTheme.ref}
+              removeAfterPrint
+              trigger={() => <Button variant="contained">Print</Button>}
+              pageStyle={pageStyle}
+            />
+            {/* <Button onClick={handleSavetoPDF}>Save to PDF</Button> */}
+          </Box>
+        </Grid>
+      </Paper>
     )
   }
 
@@ -125,7 +172,7 @@ function ResumeBuilder () {
       <Grid item xs={12}>
         <Paper elevation={3} sx={{ padding: 3 }}>
           <Typography variant="h4" fontWeight="bold">Resume Builder</Typography>
-          <Typography variant="subtitle1">Type in detail, choose style and print!</Typography>
+          <Typography variant="subtitle1">Type in detail, choose style and print</Typography>
         </Paper>
       </Grid>
       <Grid item xs={12} md={6}>

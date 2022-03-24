@@ -5,8 +5,8 @@ import { Link, } from '@mui/material'
 const Pages = [
   {
     type: "link",
-    link: "/",
-    linkComponent: <Link href="/" color="inherit" underline="hover">Home</Link>,
+    link: "/#",
+    linkComponent: <Link href="/#" color="inherit" underline="hover">Home</Link>,
     linkName: "Home",
   },
   {

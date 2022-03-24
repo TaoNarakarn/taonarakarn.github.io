@@ -11,7 +11,6 @@ function ResumeTheme (props) {
     setState: setResumeTheme } = props
   function handleSetTheme (event) {
     const { name } = event.target
-
     setResumeTheme(current => ({ ...current, theme: name }))
   }
   // const selected = {

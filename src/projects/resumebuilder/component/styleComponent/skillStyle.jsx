@@ -1,6 +1,6 @@
 // MUI Import
 import {
-  Grid, Typography, Box, Tooltip,
+  Grid, Typography, Box, Tooltip, Stack,
   FormControl, FormControlLabel,
   Rating, LinearProgress, RadioGroup, Radio
 } from '@mui/material'
@@ -16,8 +16,8 @@ function SkillStyle (props) {
   return (
     <Grid container>
       <Grid item xs={12}>
-        <Typography variant='body1'>skill level display</Typography>
-        <Grid item container xs={12}>
+        <Stack direction='row' alignItems='center' gap={1}>
+          <Typography variant="body1">skill level display </Typography>
           <FormControl>
             <RadioGroup
               row
@@ -45,9 +45,18 @@ function SkillStyle (props) {
                   control={<Radio />}
                   label={<Box sx={{ width: 85, color: 'gray' }}><LinearProgress color="inherit" variant="determinate" value={60} /></Box>}
                 /></Tooltip>
+              <Tooltip title="None">
+                <FormControlLabel
+                  id="skill-display-none"
+                  name='skill-display-none'
+                  aria-label='skill-display-none'
+                  value="none"
+                  control={<Radio />}
+                  label="None"
+                /></Tooltip>
             </RadioGroup>
           </FormControl>
-        </Grid>
+        </Stack>
       </Grid>
     </Grid>
   )

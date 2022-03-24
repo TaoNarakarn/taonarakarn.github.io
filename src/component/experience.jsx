@@ -10,11 +10,11 @@ const Experience = () => {
     return (
       experience.map((exp, index) =>
         <Grid key={index} item container xs={12} pt={3} pb={3} sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Grid item xs={12} md={1} align="center">
+          <Grid item xs={12} md={2} lg={2} align="center">
             {(exp.company.logo === '') ? <Icon>location_city</Icon> :
               <img src={exp.company.logo} alt={exp.company.name + ' Logo'} style={{ maxWidth: '80px', maxHeight: '80px' }} />}
           </Grid>
-          <Grid item xs={12} md={11}>
+          <Grid item xs={12} md={10} lg={10}>
             <Typography variant="h6" fontWeight="bold">{exp.position} {(exp.company.name !== '') ? " - " : ''}
               <Link href={exp.company.website} underline="hover" target="_blank" rel="noopener noreferrer">{exp.company.name}</Link></Typography>
             <Typography variant="subtitle1" fontWeight="500">{exp.from + ' - ' + exp.to}</Typography>
@@ -27,33 +27,16 @@ const Experience = () => {
   }
 
   return (
-    <Grid container variant="containerGrid">
-      <Grid item xs variant="sideGrid">
-        {/* Blank grid for pagination and flex this should also helps with custom style */}
-      </Grid>
-      <Grid item xs={12} md={9} sx={{
-        borderLeft: 1,
-        borderRight: 1,
-        borderColor: 'divider',
-        paddingLeft: 5,
-        paddingRight: 5,
-      }}>
-        <Grid item md={12} pt={4} sx={{ xs: 'none' }}>
-          {/* using this grid for padding top instead for better looking on mobile */}
+    <Grid container variant="containerGrid" sx={{ paddingLeft: { md: 'none', lg: 30 }, paddingRight: { md: 'none', lg: 30 } }}>
+      <Grid item xs={12} className="mainGrid" variant="mainGrid" sx={{ paddingTop: { xs: 3, md: 7 }, paddingBottom: 5 }}>
+        <Grid item xs={12} md={11}>
+          <Typography variant="h4">Work experiences</Typography>
+          <Typography variant="h6">For PDF version click <Button variant="contained" href="https://drive.google.com/file/d/1ad9STGtWFWMHsVv0hXtVWPKz93fRLL6P/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</Button></Typography>
         </Grid>
-        <Grid item container xs={12} pt={2}>
-          <Grid item md={1} sx={{ xs: 'none' }}>
-            {/* Empty space for align */}
-          </Grid>
-          <Grid item xs={12} md={11}>
-            <Typography variant="h4">Experience</Typography>
-            <Typography variant="h6">For PDF version click <Button variant="contained" href="https://drive.google.com/file/d/1ad9STGtWFWMHsVv0hXtVWPKz93fRLL6P/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</Button></Typography>
-          </Grid>
+        <Grid item xs={12}>
+          {/* add tab menu here please :) with transition from frame-motion */}
         </Grid>
         {fetchExperience(experience)}
-      </Grid>
-      <Grid item xs variant="sideGrid">
-        {/* Blank grid for pagination and flex this should also helps with custom style */}
       </Grid>
     </Grid >
   )

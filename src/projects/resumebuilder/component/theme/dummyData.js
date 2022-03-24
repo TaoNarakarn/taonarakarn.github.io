@@ -1,6 +1,7 @@
+import logoPlaceholder from '../../image/logoPlaceholder.png'
+import portraitPlaceholder from '../../image/portraitPlaceholder.png'
 
-
-exports.dummyData = {
+export const dummyData = {
   personalDetail: {
     fullname: 'John Doe',
     email: 'johndoe@example.com',
@@ -11,12 +12,12 @@ exports.dummyData = {
     country: 'earth',
     tel: '+0 111 222 3333',
     about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis orci neque, auctor eget pretium a, scelerisque eu eros. Aliquam tincidunt condimentum sollicitudin. Aenean sit amet neque pretium, rhoncus turpis nec',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png',
+    photo: portraitPlaceholder,
   },
   experience: [
     {
       companyName: 'My third job',
-      companyLogo: 'https://www.adaptivewfs.com/wp-content/uploads/2020/07/logo-placeholder-image.png',
+      companyLogo: logoPlaceholder,
       companywebsite: '',
       position: 'Technical Supervisor',
       location: 'Bangkok, Thailand',
@@ -27,7 +28,7 @@ exports.dummyData = {
     },
     {
       companyName: 'My second company',
-      companyLogo: 'https://www.adaptivewfs.com/wp-content/uploads/2020/07/logo-placeholder-image.png',
+      companyLogo: logoPlaceholder,
       companywebsite: '',
       position: '2nd job as Technician',
       location: 'Bangkok, Thailand',
@@ -39,7 +40,7 @@ exports.dummyData = {
     },
     {
       companyName: 'My first company',
-      companyLogo: 'https://www.adaptivewfs.com/wp-content/uploads/2020/07/logo-placeholder-image.png',
+      companyLogo: logoPlaceholder,
       companywebsite: '',
       position: 'Various Technical Roles',
       location: 'Bangkok, Thailand',

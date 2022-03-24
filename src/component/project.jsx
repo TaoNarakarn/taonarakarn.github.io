@@ -14,11 +14,9 @@ function Project () {
   }
 
   return (
-    <Grid container variant="containerGrid">
-      <Grid item xs variant="sideGrid">
-        {/* Blank grid for flex this should also helps with custom style */}
-      </Grid>
-      <Grid item xs={12} md={9} sx={{ paddingTop: { xs: 3, md: 7 } }} className="mainGrid">
+    <Grid container variant="containerGrid" sx={{ paddingLeft: { md: 'none', lg: 30 }, paddingRight: { md: 'none', lg: 30 } }}>
+
+      <Grid item xs={12} className="mainGrid" variant="mainGrid" sx={{ paddingTop: { xs: 3, md: 7 }, paddingBottom: 5 }}>
         {breadCrumbs()}
         <Paper elevation={3} sx={{ padding: 3 }}>
           <Typography variant="h3" fontWeight="bold">Projects</Typography>
@@ -77,9 +75,7 @@ function Project () {
           </Card>
         </Paper>
       </Grid>
-      <Grid item xs variant="sideGrid">
-        {/* Blank grid for flex this should also helps with custom style */}
-      </Grid>
+
     </Grid>
   )
 }

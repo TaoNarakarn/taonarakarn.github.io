@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
 
-import { Divider, Grid, Paper, Typography, Link, Stack, Icon } from '@mui/material'
+import { Divider, Grid, Paper, Box, Typography, Link, Stack, Icon } from '@mui/material'
 import { Email, Phone } from '@mui/icons-material'
 import { skillLevelRate, socialIcon } from '../staticFunction'
 import { dummyData } from './dummyData'
@@ -14,7 +14,7 @@ import { dummyData } from './dummyData'
 const leftPane = {
   backgroundColor: 'rgb(226, 196, 155, 0.46)',
   minHeight: '29.7cm',
-  padding: '1.5rem'
+  padding: '1.5rem',
 }
 
 // const photoStyle = {
@@ -47,7 +47,7 @@ function addressBlock (personalDetail) {
 }
 
 function skillBlock (skill, skillStyle) {
-  if (skill === undefined || skill.lenght === 0) return null
+  if (skill === undefined || skill.length === 0) return null
   return (
     <Grid item xs={12}>
       <Typography variant='h6'>Skills</Typography>
@@ -63,7 +63,7 @@ function skillBlock (skill, skillStyle) {
 }
 
 function socialBlock (social) {
-  if (social === undefined || social.lenght === 0) return null
+  if (social === undefined || social.length === 0) return null
   return (
     <Grid item xs={12}>
       <Typography variant='h6'>Social</Typography>
@@ -77,7 +77,7 @@ function socialBlock (social) {
 }
 
 function languageBlock (language) {
-  if (language === undefined || language.lenght === 0) return null
+  if (language === undefined || language.length === 0) return null
   return (
     <Grid item xs={12}>
       <Typography variant='h6'>Language</Typography>
@@ -112,7 +112,7 @@ function aboutBlock (personalDetail) {
 }
 
 function experienceBlock (experience) {
-  if (experience === undefined || experience.lenght === 0) return null
+  if (experience === undefined || experience.length === 0) return null
   return (
     <Grid item xs={12}>
       <Typography variant='h6'>Work Experience{experience.length > 1 ? 's' : null}</Typography>
@@ -145,12 +145,12 @@ function experienceBlock (experience) {
 }
 
 function educationBlock (education) {
-  if (education === undefined || education.lenght === 0) return null
+  if (education === undefined || education.length === 0) return null
   return (
     <Grid item xs={12} sx={{ marginTop: 1, paddingTop: 1 }}>
       <Typography variant="h6" fontWeight={'bold'}>Education</Typography>
       {education.map((value, index) =>
-        <Grid container key={index}>
+        <Grid container key={index} style={{ pageBreakAfter: 'always' }}>
           <Grid item xs={12} md={2} pt={2}>
             {(value.logo === '') ? null :
               <img src={value.logo} alt={value.place} style={{ maxWidth: '80px', maxHeight: '80px' }} />}
@@ -170,16 +170,16 @@ function educationBlock (education) {
 }
 
 function certAndLicenseBlock (certAndLicense) {
-  if (certAndLicense === undefined || certAndLicense.lenght === 0) return null
+  if (certAndLicense === undefined || certAndLicense.length === 0) return null
   return (
-    <Grid item xs={12} sx={{ marginTop: 1, paddingTop: 1 }}>
+    <Grid item xs={12} sx={{ marginTop: 1, paddingTop: 1, }}>
       <Typography variant="h6" fontWeight={'bold'}>Certificate and License</Typography>
       {certAndLicense.map((value, index) =>
         <Grid container key={index}>
           <Grid item xs={12} md={2}>
-            {/* {(value.certImage === '') ? null :
+            {(value.certImage === '') ? null :
               <img src={value.certImage} alt={value.name} style={{ maxWidth: '80px', maxHeight: '80px' }} />}
-            <br /> */}
+            <br />
           </Grid>
           <Grid item xs={12} md={10}>
             <Typography variant="h6" fontWeight="bold">{value.name}</Typography>
@@ -196,39 +196,42 @@ function certAndLicenseBlock (certAndLicense) {
 
 function RbTheme1 (props) {
   const resumeRef = useRef()
-  const { personalDetail, social, skill, experience, language, education, certAndLicense } = props.data
-  // const { personalDetail, social, skill, experience, language, education, certAndLicense } = dummyData
-  const { setResumeTheme, photoStyle, skillStyle } = props.style
+  // const { personalDetail, social, skill, experience, language, education, certAndLicense } = props.data
+  const { personalDetail, social, skill, experience, language, education, certAndLicense } = dummyData
+  const { resumeTheme, setResumeTheme, photoStyle, skillStyle } = props.style
   useEffect(() => {
     setResumeTheme(current => ({ ...current, ref: resumeRef.current }))
   }, [setResumeTheme])
+  if (resumeTheme.theme !== 'RbTheme1') return null
   return (
     <Grid item xs={12}>
-      <Paper id='RbTheme1' className='a4' elevation={3} ref={resumeRef} >
-        <Grid container>
-          <Grid item xs={4} style={leftPane}>
-            <Typography align='center'><img src={personalDetail.photo} alt={personalDetail.fullname}
-              style={{ borderRadius: photoStyle.radius, width: photoStyle.width, boxShadow: '5px 5px 15px grey' }} /></Typography>
-            <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
-            {addressBlock(personalDetail)}
-            <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
-            {skillBlock(skill, skillStyle)}
-            <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
-            {socialBlock(social)}
-            <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
-            {languageBlock(language)}
+      <Paper id='RbTheme1' className='a4' elevation={3} >
+        <Box ref={resumeRef} className="print-container">
+          <Grid container className="print-fullpage-element">
+            <Grid item xs={4} style={leftPane}>
+              <Typography align='center'><img src={personalDetail.photo} alt={personalDetail.fullname}
+                style={{ borderRadius: photoStyle.radius, width: photoStyle.width, boxShadow: '5px 5px 15px grey' }} /></Typography>
+              <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
+              {addressBlock(personalDetail)}
+              <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
+              {skillBlock(skill, skillStyle)}
+              <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
+              {socialBlock(social)}
+              <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
+              {languageBlock(language)}
+            </Grid>
+            <Grid item xs={8} style={rightPane}>
+              {nameAndCaptionblock(personalDetail)}
+              <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
+              {aboutBlock(personalDetail)}
+              <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
+              {experienceBlock(experience)}
+              {educationBlock(education)}
+              <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
+              {certAndLicenseBlock(certAndLicense)}
+            </Grid>
           </Grid>
-          <Grid item xs={8} style={rightPane}>
-            {nameAndCaptionblock(personalDetail)}
-            <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
-            {aboutBlock(personalDetail)}
-            <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
-            {experienceBlock(experience)}
-            {educationBlock(education)}
-            <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
-            {certAndLicenseBlock(certAndLicense)}
-          </Grid>
-        </Grid>
+        </Box>
       </Paper>
     </Grid>
   )

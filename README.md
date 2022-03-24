@@ -14,6 +14,11 @@ Project mostly done on local server
 
 ## What I did (dev log)
 I'll try to update this log as much as I can :)
+  #### 24 Mar 2022
+  - Rearrange default theme in resume builder
+  - Add framer-motion package for test
+  - Change design in dark theme
+  - Fix link to home page refresh the theme back to light mode
   #### 23 Mar 2022
   - Add print button in resume builder (still need to figure out how to save it as PDF directly)
   - Add more theme with very creative name "Theme 2"

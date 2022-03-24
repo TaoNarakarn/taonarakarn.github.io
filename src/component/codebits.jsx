@@ -50,19 +50,10 @@ const CodeBits = () => {
   }
 
   return (
-    <Grid container variant="containerGrid" sx={{ borderLeft: 1, borderRight: 1, borderColor: 'divider', }}>
-      <Grid item xs variant="sideGrid">
-        {/* Blank grid for pagination and flex this should also helps with custom style */}
-      </Grid>
-      <Grid item xs={12} md={9} sx={{
-        borderLeft: 1,
-        borderRight: 1,
-        borderColor: 'divider',
-        paddingLeft: 5,
-        paddingRight: 5,
-      }}>
-        <Box mb={3} sx={{ paddingTop: 3 }}>
-          <Typography variant='h5'>CodeBits</Typography>
+    <Grid container variant="containerGrid" sx={{ paddingLeft: { md: 'none', lg: 30 }, paddingRight: { md: 'none', lg: 30 } }}>
+      <Grid item xs={12} className="mainGrid" variant="mainGrid" sx={{ paddingTop: { xs: 3, md: 7 }, paddingBottom: 5 }}>
+        <Box mb={3}>
+          <Typography variant='h4'>CodeBits</Typography>
           <Typography variant='subtitle1'>While is site is a project for me in itself to learn React and MaterialUI component, I am create bits and pieces for fun too</ Typography>
           <Typography variant='subtitle1' fontWeight='bold'>State are for each component, when you switch tabs you will lose what was there</Typography>
         </Box>
@@ -91,9 +82,6 @@ const CodeBits = () => {
         <Typography>Coming soon</Typography>
         
       </TabPanel> */}
-      </Grid>
-      <Grid item xs variant="sideGrid">
-        {/* Blank grid for pagination and flex this should also helps with custom style */}
       </Grid>
     </Grid>
   )

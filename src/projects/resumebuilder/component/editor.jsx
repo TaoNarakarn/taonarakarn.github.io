@@ -74,6 +74,7 @@ function Editor (props) {
     <Grid container spacing={3} className="no-print">
       <Grid item xs={12}>
         <Paper elevation={3} sx={{ padding: 3 }}>
+          <Typography variant='body1' sx={{ marginTop: 1, marginBottom: 1 }}>Input information here and see preview on the right</Typography>
           <AccordionComponent title={'Personal Detail'} subTitle={''} state={personalDetail} setState={setPersonalDetail} />
           <AccordionComponent title={'Social'} subTitle={''} state={social} setState={setSocial} />
           <AccordionComponent title={'Skill'} subTitle={''} state={skill} setState={setSkill} />

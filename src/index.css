@@ -8,11 +8,15 @@ body {
 }
 
 .mainGrid {
-  border-left: 1px solid;
-  border-right: 1px solid;
-  border-color: rgba(0, 0, 0, 0.12);
+  /* border-left: 1px solid;
+  border-right: 1px solid; */
+  /* border-color: rgba(0, 0, 0, 0.12); */
   padding-left: 3vw;
   padding-right: 3vw;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  /* backdrop-filter: blur(90px); */
+  backdrop-filter: blur(20px);
 }
 
 .imageStyle {
@@ -50,8 +54,6 @@ code {
     monospace;
 }
 
-
-
 /* page[size="A4"] {
   background: white;
   width: 21cm;
@@ -63,22 +65,24 @@ code {
 } */
 
 .a4 {
-  background: white;
   width: 21cm;
   /* height: 29.7cm; */
-  display: block;
   margin: 0 auto;
   margin-bottom: 0.5cm;
-  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+  page-break-after: always;
+  border: none;
 }
 @media print {
-  body, .a4 , page[size="A4"]{
+  .a4 {
     margin: 0;
     margin-top: 0;
-    box-shadow: 0;
+    border-bottom: none;
   }
-  .no-print, .no-print *
-    {
-        display: none !important;
-    }
+  .print-container {
+    height:100%;
+    position:absolute;
+    top:0px;
+    bottom:0px;
+    margin: auto;
+  }
 }

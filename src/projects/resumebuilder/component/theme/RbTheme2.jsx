@@ -27,7 +27,7 @@ function aboutBlock (personalDetail) {
 }
 
 function socialBlock (social) {
-  if (social === undefined || social.lenght === 0) return null
+  if (social === undefined || social.length === 0) return null
   return (
     <Box display='flex' gap={2} xs={12}>
       {social.map((value, index) =>
@@ -41,7 +41,7 @@ function socialBlock (social) {
 }
 
 function experienceBlock (experience) {
-  if (experience === undefined || experience.lenght === 0) return null
+  if (experience === undefined || experience.length === 0) return null
   return (
     <Grid item xs={12}>
       <Typography variant='h6'>Work Experience{experience.length > 1 ? 's' : null}</Typography>
@@ -74,7 +74,7 @@ function experienceBlock (experience) {
 }
 
 function skillBlock (skill, skillStyle) {
-  if (skill === undefined || skill.lenght === 0) return null
+  if (skill === undefined || skill.length === 0) return null
   return (
     <Grid item xs={12}>
       <Typography variant='h6'>Skills</Typography>
@@ -90,7 +90,7 @@ function skillBlock (skill, skillStyle) {
 }
 
 function languageBlock (language) {
-  if (language === undefined || language.lenght === 0) return null
+  if (language === undefined || language.length === 0) return null
   return (
     <Grid item xs={12}>
       <Typography variant='h6'>Language</Typography>
@@ -105,7 +105,7 @@ function languageBlock (language) {
 }
 
 function educationBlock (education) {
-  if (education === undefined || education.lenght === 0) return null
+  if (education === undefined || education.length === 0) return null
   return (
     <Grid item xs={12} sx={{ marginTop: 1, paddingTop: 1 }}>
       <Typography variant="h6" fontWeight={'bold'}>Education</Typography>
@@ -123,7 +123,7 @@ function educationBlock (education) {
 }
 
 function certAndLicenseBlock (certAndLicense) {
-  if (certAndLicense === undefined || certAndLicense.lenght === 0) return null
+  if (certAndLicense === undefined || certAndLicense.length === 0) return null
   return (
     <Grid item xs={12} sx={{ marginTop: 1, paddingTop: 1 }}>
       <Typography variant="h6" fontWeight={'bold'}>Certificate and License</Typography>
@@ -152,74 +152,76 @@ function RbTheme2 (props) {
   const resumeRef = useRef()
   const { personalDetail, social, skill, experience, language, education, certAndLicense } = props.data
   // const { personalDetail, social, skill, experience, language, education, certAndLicense } = dummyData
-  const { setResumeTheme, photoStyle, skillStyle } = props.style
+  const { resumeTheme, setResumeTheme, photoStyle, skillStyle } = props.style
   useEffect(() => {
     setResumeTheme(current => ({ ...current, ref: resumeRef.current }))
   }, [setResumeTheme])
-
+  if (resumeTheme.theme !== 'RbTheme2') { return null }
   return (
     <Grid item xs={12}>
-      <Paper id='RbTheme2' className='a4' elevation={3} ref={resumeRef}>
-        <Grid item xs={12} sx={{ height: 14, backgroundColor: '#3a3a3b', marginBottom: 1 }} />
-        <Grid container >
-          <Grid item container xs={12} sx={{ padding: 3 }}>
-            <Grid item xs={9}>
-              {nameAndCaptionblock(personalDetail)}
-              <br />
-              {aboutBlock(personalDetail)}
-              <br />
-              {socialBlock(social)}
+      <Paper id='RbTheme2' className='a4' elevation={3} >
+        <Box ref={resumeRef}>
+          <Grid item xs={12} sx={{ height: 14, backgroundColor: '#3a3a3b', marginBottom: 1 }} />
+          <Grid container >
+            <Grid item container xs={12} sx={{ padding: 3 }}>
+              <Grid item xs={9}>
+                {nameAndCaptionblock(personalDetail)}
+                <br />
+                {aboutBlock(personalDetail)}
+                <br />
+                {socialBlock(social)}
+              </Grid>
+              <Grid item xs={3}>
+                <Typography align='center'><img src={personalDetail.photo} alt={personalDetail.fullname}
+                  style={{ borderRadius: photoStyle.radius, width: photoStyle.width, boxShadow: '5px 5px 15px grey' }} /></Typography>
+              </Grid>
             </Grid>
-            <Grid item xs={3}>
-              <Typography align='center'><img src={personalDetail.photo} alt={personalDetail.fullname}
-                style={{ borderRadius: photoStyle.radius, width: photoStyle.width, boxShadow: '5px 5px 15px grey' }} /></Typography>
+            <Grid item container xs={12}>
+              <Box display='flex' sx={{ flex: 1, backgroundColor: '#3a3a3b', alignItems: 'center' }}>
+                <Box sx={{ flexGrow: 1, padding: 2 }}>
+                  <Stack direction='row' spacing={1} justifyContent="center">
+                    <PhoneRounded sx={{ fontSize: 40, color: 'white', marginTop: 1 }} />
+                    <Box>
+                      <Typography variant='h6' fontWeight='bold' color="white">Phone</Typography>
+                      <Typography variant='body1' color="#a6a6a6">{personalDetail.tel}</Typography>
+                    </Box>
+                  </Stack>
+                </Box>
+                <Box sx={{ flexGrow: 1, padding: 2 }}>
+                  <Stack direction='row' spacing={1} justifyContent="center">
+                    <Email sx={{ fontSize: 40, color: 'white', marginTop: 1 }} />
+                    <Box>
+                      <Typography variant='h6' fontWeight='bold' color="white">Email</Typography>
+                      <Typography variant='body1' color="#a6a6a6">{personalDetail.email}</Typography>
+                    </Box>
+                  </Stack>
+                </Box>
+                <Box sx={{ flexGrow: 1, padding: 2, backgroundColor: '#494949' }}>
+                  <Stack direction='row' spacing={1} justifyContent="center">
+                    <LocationOn sx={{ fontSize: 40, color: 'white', marginTop: 1 }} />
+                    <Box>
+                      <Typography variant='h6' fontWeight='bold' color="white">Address</Typography>
+                      <Typography variant='body1' color="#a6a6a6">{personalDetail.address + ',' + personalDetail.country}</Typography>
+                    </Box>
+                  </Stack>
+                </Box>
+              </Box>
+            </Grid>
+            <Grid item container xs={12} sx={{ backgroundColor: '#e8e8e8', padding: 3 }} >
+              <Grid item xs={8}>
+                {experienceBlock(experience)}
+                {certAndLicenseBlock(certAndLicense)}
+              </Grid>
+              <Grid item xs={4}>
+                {skillBlock(skill, skillStyle)}
+                <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
+                {languageBlock(language)}
+                <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
+                {educationBlock(education)}
+              </Grid>
             </Grid>
           </Grid>
-          <Grid item container xs={12}>
-            <Box display='flex' sx={{ flex: 1, backgroundColor: '#3a3a3b', alignItems: 'center' }}>
-              <Box sx={{ flexGrow: 1, padding: 2 }}>
-                <Stack direction='row' spacing={1} justifyContent="center">
-                  <PhoneRounded sx={{ fontSize: 40, color: 'white', marginTop: 1 }} />
-                  <Box>
-                    <Typography variant='h6' fontWeight='bold' color="white">Phone</Typography>
-                    <Typography variant='body1' color="#a6a6a6">{personalDetail.tel}</Typography>
-                  </Box>
-                </Stack>
-              </Box>
-              <Box sx={{ flexGrow: 1, padding: 2 }}>
-                <Stack direction='row' spacing={1} justifyContent="center">
-                  <Email sx={{ fontSize: 40, color: 'white', marginTop: 1 }} />
-                  <Box>
-                    <Typography variant='h6' fontWeight='bold' color="white">Email</Typography>
-                    <Typography variant='body1' color="#a6a6a6">{personalDetail.email}</Typography>
-                  </Box>
-                </Stack>
-              </Box>
-              <Box sx={{ flexGrow: 1, padding: 2, backgroundColor: '#494949' }}>
-                <Stack direction='row' spacing={1} justifyContent="center">
-                  <LocationOn sx={{ fontSize: 40, color: 'white', marginTop: 1 }} />
-                  <Box>
-                    <Typography variant='h6' fontWeight='bold' color="white">Address</Typography>
-                    <Typography variant='body1' color="#a6a6a6">{personalDetail.address + ',' + personalDetail.country}</Typography>
-                  </Box>
-                </Stack>
-              </Box>
-            </Box>
-          </Grid>
-          <Grid item container xs={12} sx={{ backgroundColor: '#e8e8e8', padding: 3 }} >
-            <Grid item xs={8}>
-              {experienceBlock(experience)}
-              {certAndLicenseBlock(certAndLicense)}
-            </Grid>
-            <Grid item xs={4}>
-              {skillBlock(skill, skillStyle)}
-              <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
-              {languageBlock(language)}
-              <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
-              {educationBlock(education)}
-            </Grid>
-          </Grid>
-        </Grid>
+        </Box>
       </Paper >
     </Grid >
   )

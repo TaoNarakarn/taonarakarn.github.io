@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import {
-  Grid, Stack, Collapse, Button, Link, Rating, Tooltip, Icon, IconButton,
+  Typography, Grid, Stack, Collapse, Button, Link, Rating, Tooltip, Icon, IconButton,
   Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions,
   LinearProgress,
 } from '@mui/material'
@@ -46,8 +46,47 @@ export function skillLevelRate (level, displayType) {
       default: return <LinearProgress variant="determinate" value={0} />
     }
   }
-
 }
+
+/**
+ * @param {Object} skill value from skill map
+ * @param {Number} index index from skill map
+ * @param {Object} skillStyle skillStyle state
+ * @param {Number} skillSize xs size of Grid
+ * @param {Number} levelSize xs size of Grid
+ * @returns Component skill and various level style
+ */
+export function skillDisplay (skill, index, skillStyle, skillSize, levelSize) {
+  const { displayType } = skillStyle
+  if (displayType === 'none') { skillSize = 12 }
+  let skillDisplay =
+    <>
+      <Grid item xs={skillSize}><Typography variant='body1' key={index}>{skill.skill}</Typography></Grid>
+      <Grid item xs={levelSize} align='center'>{skillLevelRate(skill.level, displayType)}</Grid>
+    </>
+  switch (displayType) {
+    case 'circle': skillDisplay =
+      <>
+        <Grid item xs={skillSize}><Typography variant='body1' key={index}>{skill.skill}</Typography></Grid>
+        <Grid item xs={levelSize} align='center'>{skillLevelRate(skill.level, displayType)}</Grid>
+      </>
+      break
+    case 'line': skillDisplay =
+      <>
+        <Grid item xs={skillSize}><Typography variant='body1' key={index}>{skill.skill}</Typography></Grid>
+        <Grid item xs={levelSize} align='center' sx={{ paddingTop: 1.275, paddingRight: 1 }}>{skillLevelRate(skill.level, displayType)}</Grid>
+      </>
+      break
+    case 'none': skillDisplay =
+      <>
+        <Grid item xs={skillSize}><Typography variant='body1' key={index}>{'• ' + skill.skill}</Typography></Grid>
+      </>
+      break
+    default:
+  }
+  return skillDisplay
+}
+
 
 export function signalLevel (level) {
   switch (level) {

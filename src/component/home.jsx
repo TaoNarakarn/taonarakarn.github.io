@@ -139,24 +139,14 @@ const Home = () => {
 
   // main return
   return (
-    <Grid container variant="containerGrid">
-      <Grid item xs variant="sideGrid">
-        {/* Blank grid for pagination and flex this should also helps with custom style */}
-      </Grid>
+    <Grid container variant="containerGrid" sx={{ paddingLeft: { md: 'none', lg: 30 }, paddingRight: { md: 'none', lg: 30 } }}>
       {/* content grid */}
-      <Grid item xs={12} md={9} className="mainGrid">
-        <Grid item md={12} pt={7} sx={{ xs: 'none' }}>
-          {/* using this grid for padding top instead for better looking on mobile */}
-        </Grid>
+      <Grid item xs={12} className="mainGrid" variant="mainGrid" sx={{ paddingTop: { xs: 3, md: 7 }, paddingBottom: 5 }}>
         {introduction()}
         <Divider sx={{ marginTop: 5, marginBottom: 5 }} />
         {about()}
         <Divider sx={{ marginTop: 5, marginBottom: 5 }} />
         {project()}
-        <Grid item xs={12} mb={5} /> {/* this grid is for gutting buttom end */}
-      </Grid>
-      <Grid item xs variant="sideGrid">
-        {/* Blank grid for pagination and flex this should also helps with custom style */}
       </Grid>
     </Grid >
   )
