@@ -1,9 +1,12 @@
 {
   "files": {
     "main.css": "/static/css/main.903cb1f5.css",
-    "main.js": "/static/js/main.7aaf28c2.js",
+    "main.js": "/static/js/main.52d54e29.js",
     "static/js/787.1ed0c42c.chunk.js": "/static/js/787.1ed0c42c.chunk.js",
     "static/media/meHeaderSmall.png": "/static/media/meHeaderSmall.1796772c547b92d81c01.png",
+    "static/media/CertGoogleDataAnalyticsProfessional.pdf": "/static/media/CertGoogleDataAnalyticsProfessional.49b73b712761ae1ea7cf.pdf",
+    "static/media/CertITILFoundation.pdf": "/static/media/CertITILFoundation.b3de5bd99ac5c280cfd4.pdf",
+    "static/media/CertITILServiceDesign.pdf": "/static/media/CertITILServiceDesign.740f608836c7ad1db079.pdf",
     "static/media/googlecert.png": "/static/media/googlecert.139ddfb8143027497091.png",
     "static/media/portraitPlaceholder.png": "/static/media/portraitPlaceholder.157f088b56f86d22066e.png",
     "static/media/RbTheme1_Thumbnail.jpg": "/static/media/RbTheme1_Thumbnail.96a4af5d765633bc5e6e.jpg",
@@ -14,11 +17,11 @@
     "static/media/ResumeBuilderLogo.jpg": "/static/media/ResumeBuilderLogo.ce0c94017dd22dcdbe81.jpg",
     "index.html": "/index.html",
     "main.903cb1f5.css.map": "/static/css/main.903cb1f5.css.map",
-    "main.7aaf28c2.js.map": "/static/js/main.7aaf28c2.js.map",
+    "main.52d54e29.js.map": "/static/js/main.52d54e29.js.map",
     "787.1ed0c42c.chunk.js.map": "/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.903cb1f5.css",
-    "static/js/main.7aaf28c2.js"
+    "static/js/main.52d54e29.js"
   ]
 }
