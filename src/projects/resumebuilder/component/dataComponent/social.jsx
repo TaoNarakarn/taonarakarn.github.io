@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 
 // component
-import { socialIcon, deleteConfirmationDialog, createLink } from './staticFunction'
+import { socialIcon, deleteConfirmationDialog, createLink } from '../staticFunction'
 
 // MUI import
 import {

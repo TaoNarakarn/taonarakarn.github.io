@@ -1,5 +1,4 @@
 import logoPlaceholder from '../../image/logoPlaceholder.png'
-import portraitPlaceholder from '../../image/portraitPlaceholder.png'
 
 export const dummyData = {
   personalDetail: {
@@ -12,7 +11,7 @@ export const dummyData = {
     country: 'earth',
     tel: '+0 111 222 3333',
     about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis orci neque, auctor eget pretium a, scelerisque eu eros. Aliquam tincidunt condimentum sollicitudin. Aenean sit amet neque pretium, rhoncus turpis nec',
-    photo: portraitPlaceholder,
+    photo: '',
   },
   experience: [
     {

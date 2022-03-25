@@ -2,14 +2,14 @@
 
 // Component import
 // Detail section
-import PersonalDetail from './personalDetail'
-import Social from './social'
-import Skill from './skill'
-import Experience from './experience'
-import Education from './education'
-import CertAndLicense from './certAndLicense'
-import Language from './language'
-// import honorAndAward from './honorAndAward'
+import PersonalDetail from './dataComponent/personalDetail'
+import Social from './dataComponent/social'
+import Skill from './dataComponent/skill'
+import Experience from './dataComponent/experience'
+import Education from './dataComponent/education'
+import CertAndLicense from './dataComponent/certAndLicense'
+import Language from './dataComponent/language'
+// import honorAndAward from './dataComponent/honorAndAward'
 // Style section
 import ResumeTheme from './styleComponent/resumeTheme'
 import PhotoStyle from './styleComponent/photoStyle'
@@ -20,7 +20,7 @@ import {
   Grid, Typography,
   Accordion, AccordionSummary, AccordionDetails, Paper,
 } from '@mui/material'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { ExpandMore } from '@mui/icons-material';
 
 function AccordionComponent (props) {
   // State is the main state that will show on the preview
@@ -43,7 +43,7 @@ function AccordionComponent (props) {
   return (
     <Accordion>
       <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
+        expandIcon={<ExpandMore />}
         aria-controls={title}
         id={title}
         sx={{ borderBottom: 1, borderColor: 'divider' }}

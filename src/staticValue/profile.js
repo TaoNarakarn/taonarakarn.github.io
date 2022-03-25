@@ -1,4 +1,48 @@
-const experience = [
+// image
+import googlecert from '../static/image/googlecert.png'
+
+// file
+import CertGoogleDataAnalyticsProfessional from '../static/file/CertGoogleDataAnalyticsProfessional.pdf'
+import CertITILServiceDeign from '../static/file/CertITILServiceDesign.pdf'
+import CertITILFoundation from '../static/file/CertITILFoundation.pdf'
+
+export const certification = [
+  {
+    name: 'Google Data Analytics Professional Certificate',
+    organization: 'Coursera',
+    issueDate: 'Feb 2022',
+    expireDate: '',
+    notExpire: true,
+    certID: '',
+    certURL: 'https://www.credly.com/badges/1cd24de4-1eba-42b7-93cd-fff17d97acb1?source=linked_in_profile',
+    certImage: googlecert,
+    certFile: CertGoogleDataAnalyticsProfessional,
+  },
+  {
+    name: 'ITIL Intermediate: IT Service Design',
+    organization: 'AXELOS Global Best Practice',
+    issueDate: 'Oct 2017',
+    expireDate: '',
+    notExpire: true,
+    certID: 'GR752047691NN',
+    certURL: 'https://candidate.peoplecert.org/Reports.aspx?eid=283485&uid=343362&certNum=GR750321878NN',
+    certImage: '',
+    certFile: CertITILServiceDeign,
+  },
+  {
+    name: 'ITIL Foundation',
+    organization: 'AXELOS Global Best Practice',
+    issueDate: 'July 2017',
+    expireDate: '',
+    notExpire: true,
+    certID: 'GR750321878NN',
+    certURL: 'https://candidate.peoplecert.org/Reports.aspx?eid=283485&uid=343362&certNum=GR750321878NN',
+    certImage: '',
+    certFile: CertITILFoundation,
+  },
+]
+
+export const experience = [
   {
     company: {
       name: 'Rouse and Co International (Thailand)',
@@ -117,5 +161,3 @@ const experience = [
 //     ],
 //   },
 // ]
-
-export default experience

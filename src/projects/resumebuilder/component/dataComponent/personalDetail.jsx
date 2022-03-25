@@ -1,9 +1,9 @@
 // Component
-import countryList from "../../../staticValue/countryList"
+import countryList from "../../../../staticValue/countryList"
 
 // MUI Import
 import {
-  Grid, TextField, FormControl, InputLabel, Select, MenuItem,
+  Grid, Button, Stack, TextField, FormControl, InputLabel, Select, MenuItem,
 } from "@mui/material"
 
 // function checkIfImageExists (url, callback) {
@@ -40,16 +40,30 @@ function PersonalDetail (props) {
       { ...currentState, [name]: value }
     ))
   }
+  function handleChooseFile () {
+    const file = document.getElementById('file')
+    file.click()
+  }
+  function handleAddPhoto (event) {
+    setPersonalDetail(currentValue => ({ ...currentValue, photo: URL.createObjectURL(event.target.files[0]) }))
+  }
+  function handleRemovePhoto () {
+    setPersonalDetail(currentValue => ({ ...currentValue, photo: '' }))
+  }
   return (
     <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <input type="file" accept="image/*" name="image" id="file" style={{ display: 'none' }} onChange={handleAddPhoto} />
+        <Stack direction='row' spacing={2} justifyContent="flex-end">
+          <Button variant="contained" onClick={handleChooseFile}>Choose photo</Button>
+          <Button variant="contained" color="warning" onClick={handleRemovePhoto}>Remove photo</Button>
+        </Stack>
+      </Grid>
       <Grid item xs={12}>
         <TextField fullWidth id="fullname" name="fullname" placeholder="Full name" label='Full name' onChange={handleChange} value={personalDetail.fullname} />
       </Grid>
       <Grid item xs={12}>
         <TextField fullWidth id="email" name="email" placeholder="Email" label='Email' onChange={handleChange} value={personalDetail.email} />
-      </Grid>
-      <Grid item xs={12}>
-        <TextField fullWidth id="photo" name="photo" placeholder="Link to your photo" label="Photo Link" onChange={handleChange} value={personalDetail.photo} />
       </Grid>
       <Grid item xs={12}>
         <TextField fullWidth id="address" name="address" placeholder="Street Address" label="Street Address" onChange={handleChange} value={personalDetail.address} />
@@ -85,7 +99,7 @@ function PersonalDetail (props) {
         <TextField fullWidth id="caption" name="caption" placeholder="Caption" label="Caption" onChange={handleChange} value={personalDetail.caption} />
       </Grid>
       <Grid item xs={12}>
-        <TextField fullWidth multiline rows={3} id="about" name="about" placeholder="Write 2-3 sentences about yourself" label="About" onChange={handleChange} value={personalDetail.about} />
+        <TextField fullWidth multiline rows={3} id="about" name="about" placeholder="Write 2-3 sentences about yourself" label="About / Career objective" onChange={handleChange} value={personalDetail.about} />
       </Grid>
     </Grid >
   )

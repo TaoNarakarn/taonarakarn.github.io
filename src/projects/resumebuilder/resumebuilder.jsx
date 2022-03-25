@@ -4,9 +4,6 @@ import ReactToPrint from 'react-to-print'
 // import jsPDF from 'jspdf'
 // import html2canvas from 'html2canvas'
 
-// image
-import portraitPlaceholder from './image/portraitPlaceholder.png'
-
 // Component import
 import Editor from "./component/editor"
 import DefaultTheme from "./component/theme/defaultTheme"
@@ -31,7 +28,7 @@ const personalDetailTemplate = {
   country: '',
   tel: '',
   about: '',
-  photo: portraitPlaceholder,
+  photo: '',
 }
 
 const resumeThemeTemplate = {
@@ -64,17 +61,6 @@ const skillStyleTemplate = {
 //     showInEditor: true,
 //   },
 // }
-
-// ToDo
-// add a style component (font family, size and color)
-// fix print not goes all the way to end of the last page
-// default style value for each theme
-// create a template done 2 fix default ones to looks better then add 1 more
-// learn about export to PDF jsPDF? React-PDF? (I can print now but user still need to click save to PDF from their printing page)
-
-// Loading logo on home page
-// learn framer-motion
-// change from hotlink to image to upload image to browser local storage (client side)
 
 function ResumeBuilder () {
   // Visual section
@@ -134,22 +120,21 @@ function ResumeBuilder () {
     //   //   // doc.html(canvas, { callback: function (pdf) { pdf.save('resume.pdf') } })
     //   // })
     // }
-    const pageStyle = `
-    @media print {
-      @page {
-        size: A4 portrait;
-        margin: 0mm;
-      }
-      .print-container {
-        margin: 0px;
-        margin-top: 0px;
-        -webkit-print-color-adjust: exact;
-      }
-      .print-fullpage-element {
-        height: 100%;
-      }
-    }
-    `
+    // const pageStyle = `
+    // @media print {
+    //   @page {
+    //     size: A4 portrait;
+    //     margin: 0mm;
+    //   }
+    //   .print-container {
+    //     margin: 0px;
+    //     margin-top: 0px;
+    //     -webkit-print-color-adjust: exact;
+    //   }
+    //   .print-fullpage-element {
+    //     height: 100%;
+    //   }
+    // }`
     return (
       <Paper sx={{ padding: 1, marginBottom: 3 }}>
         <Grid item xs={12}>
@@ -158,7 +143,6 @@ function ResumeBuilder () {
               content={() => resumeTheme.ref}
               removeAfterPrint
               trigger={() => <Button variant="contained">Print</Button>}
-              pageStyle={pageStyle}
             />
             {/* <Button onClick={handleSavetoPDF}>Save to PDF</Button> */}
           </Box>

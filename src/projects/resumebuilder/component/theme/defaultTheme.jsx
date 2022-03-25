@@ -1,7 +1,11 @@
+// core dependencies
 import React, { useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+
 // static component
 import { socialIcon, skillDisplay } from '../staticFunction'
-import { dummyData } from './dummyData'
+// import { dummyData } from './dummyData'
+import portraitPlaceholder from '../../image/portraitPlaceholder.png'
 
 // MUI import
 import {
@@ -15,12 +19,10 @@ const socialSection = (social) => {
     <Grid item xs={12}>
       <Box sx={{ display: 'flex', flexBasis: 'auto', gap: 2 }}>
         {social.map((value, index) =>
-          <Stack key={index} direction="row" alignItems="center" spacing={0.5}>
-            {socialIcon(value.platform)}
-            <Link href={value.link} target="_blank" rel="noopener noreferrer">
-              <Typography variant="body2"> {value.link}</Typography>
-            </Link>
-          </Stack>)}
+          <Link href={value.link} underline="hover" target="_blank" rel="noopener noreferrer" color="inherit" key={index}>
+            <Stack direction="row" align="center" spacing={0.5}>{socialIcon(value.platform)} <Typography variant="body1">{value.link}</Typography></Stack>
+          </Link>
+        )}
       </Box>
     </Grid>
   )
@@ -203,51 +205,60 @@ function certAndLicenseSection (certAndLicense) {
 
 function DefaultTheme (props) {
   const resumeRef = useRef()
-  // const { personalDetail, social, skill, experience, language, education, certAndLicense } = props.data
-  const { personalDetail, social, skill, experience, language, education, certAndLicense } = dummyData
-  const { setResumeTheme, photoStyle, skillStyle } = props.style
+  const { personalDetail, social, skill, experience, language, education, certAndLicense } = props.data
+  // const { personalDetail, social, skill, experience, language, education, certAndLicense } = dummyData
+  const { resumeTheme, setResumeTheme, photoStyle, skillStyle } = props.style
   useEffect(() => {
     setResumeTheme(current => ({ ...current, ref: resumeRef.current }))
   }, [setResumeTheme])
+  if (resumeTheme.theme !== 'Default') { return null }
+  let imgSrc = personalDetail.photo === '' ? portraitPlaceholder : personalDetail.photo
   return (
-    <Grid container>
-      <Grid item xs={12}>
-        <Paper className='a4' sx={{ border: 'none' }}>
-          <Box ref={resumeRef} sx={{ pageBreakAfter: 'always' }}>
-            <Grid container sx={{ padding: 4, }}>
-              <Grid item xs={9}>
-                <Typography variant="h4" fontWeight='bold'>{personalDetail.fullname}</Typography>
-                <Typography variant="subtitle1">{personalDetail.caption}</Typography>
-                <br />
-                <Typography variant="subtitle2" color="gray">{personalDetail.address + ' ' + personalDetail.city} {personalDetail.state !== '' ? ' ,' + personalDetail.state : ''} {personalDetail.country !== '' ? ' ,' + personalDetail.country : ''}</Typography>
-                <Stack direction="row" spacing={1}>
-                  <Phone fontSize="small" /><Typography variant="subtitle2" fontWeight="bold">{personalDetail.tel}</Typography>
-                  <Email fontSize="small" /><Typography variant="subtitle2" fontWeight="bold">{personalDetail.email}</Typography>
-                </Stack>
-                <br />
-                {socialSection(social)}
-              </Grid>
-              <Grid item xs={3} align="right">
-                <img src={personalDetail.photo} alt={personalDetail.fullname} height="auto"
-                  style={{ borderRadius: photoStyle.radius, width: photoStyle.width }}
-                />
-              </Grid>
-              <Grid container item xs={12}>
-                <Grid item xs={8}>
-                  {aboutSection(personalDetail.about)}
+    <Grid item xs={12}>
+      <AnimatePresence>
+        <motion.div
+          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 50 }}
+          exit={{ opacity: 0, x: -50 }}
+          transition={{ duration: 0.3 }}
+        >
+          <Paper className='a4' sx={{ border: 'none' }}>
+            <Box ref={resumeRef} sx={{ pageBreakAfter: 'always' }}>
+              <Grid container sx={{ padding: 4, }}>
+                <Grid item xs={9}>
+                  <Typography variant="h4" fontWeight='bold'>{personalDetail.fullname}</Typography>
+                  <Typography variant="subtitle1">{personalDetail.caption}</Typography>
+                  <br />
+                  <Typography variant="subtitle2" color="gray">{personalDetail.address + ' ' + personalDetail.city} {personalDetail.state !== '' ? ' ,' + personalDetail.state : ''} {personalDetail.country !== '' ? ' ,' + personalDetail.country : ''}</Typography>
+                  <Stack direction="row" spacing={1}>
+                    {personalDetail.tel === '' ? null : <Phone fontSize="small" />}<Typography variant="subtitle2" fontWeight="bold">{personalDetail.tel}</Typography>
+                    {personalDetail.tel === '' ? null : <Email fontSize="small" />}<Typography variant="subtitle2" fontWeight="bold">{personalDetail.email}</Typography>
+                  </Stack>
+                  <br />
+                  {socialSection(social)}
                 </Grid>
-                <Grid item xs={4}>
-                  {skillSection(skill, skillStyle)}
-                  {languageSection(language)}
+                <Grid item xs={3} align="right">
+                  <img src={imgSrc} alt={personalDetail.fullname} height="auto"
+                    style={{ borderRadius: photoStyle.radius, width: photoStyle.width }}
+                  />
                 </Grid>
+                <Grid container item xs={12}>
+                  <Grid item xs={8}>
+                    {aboutSection(personalDetail.about)}
+                  </Grid>
+                  <Grid item xs={4}>
+                    {skillSection(skill, skillStyle)}
+                    {languageSection(language)}
+                  </Grid>
+                </Grid>
+                {experienceSection(experience)}
+                {educationSection(education)}
+                {certAndLicenseSection(certAndLicense)}
               </Grid>
-              {experienceSection(experience)}
-              {educationSection(education)}
-              {certAndLicenseSection(certAndLicense)}
-            </Grid>
-          </Box>
-        </Paper>
-      </Grid>
+            </Box>
+          </Paper>
+        </motion.div>
+      </AnimatePresence>
     </Grid>
   )
 }

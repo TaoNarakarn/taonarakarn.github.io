@@ -9,11 +9,14 @@ Project mostly done on local server
   - [ ] Favicon still need to change, its still create react app default (I don't have any design in mind)
   - [ ] Add more stuff in codebits
   - [x] Performance issue when update array of object state (its input is lag without helping library) : I fix this by create temporary state and merge them back when saved
-  - [ ] Design a bunch more stuff (resume builder: template(3 done), style editor, data entry(done))
+  - [x] Design a bunch more stuff (resume builder: template(3 done), style editor, data entry(done))
 
 
 ## What I did (dev log)
 I'll try to update this log as much as I can :)
+  #### 25 Mar 2022
+  - Apply framer-motion to add animation to main pages and resume builder
+  - Change personal photo in resume builder from link to upload to react state and remove it
   #### 24 Mar 2022
   - Rearrange default theme in resume builder
   - Add framer-motion package for test

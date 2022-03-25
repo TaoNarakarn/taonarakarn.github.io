@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 
 // component
-import { skillLevelRate, deleteConfirmationDialog } from './staticFunction'
+import { skillLevelRate, deleteConfirmationDialog } from '../staticFunction'
 
 // MUI import
 import {

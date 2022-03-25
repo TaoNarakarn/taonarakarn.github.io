@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 
 // Static component
-import { deleteConfirmationDialog } from './staticFunction'
+import { deleteConfirmationDialog } from '../staticFunction'
 
 // MUI imports
 import {

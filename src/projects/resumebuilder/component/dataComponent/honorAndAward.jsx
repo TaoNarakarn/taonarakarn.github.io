@@ -1,5 +1,3 @@
-
-
 function honorAndAward () {
   return (
     <div>honorAndAward</div>

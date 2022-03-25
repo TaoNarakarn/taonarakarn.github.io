@@ -1,6 +1,6 @@
 
-import resumeBuilderLogo from '../image/ResumeBuilderLogo.jpg'
-import googlecert from '../image/googlecert.png'
+import resumeBuilderLogo from '../static/image/ResumeBuilderLogo.jpg'
+import googlecert from '../static/image/googlecert.png'
 
 // MUI import
 import { Box, Breadcrumbs, Button, Card, CardContent, CardMedia, Grid, Paper, Typography, Link } from "@mui/material"
@@ -15,7 +15,6 @@ function Project () {
 
   return (
     <Grid container variant="containerGrid" sx={{ paddingLeft: { md: 'none', lg: 30 }, paddingRight: { md: 'none', lg: 30 } }}>
-
       <Grid item xs={12} className="mainGrid" variant="mainGrid" sx={{ paddingTop: { xs: 3, md: 7 }, paddingBottom: 5 }}>
         {breadCrumbs()}
         <Paper elevation={3} sx={{ padding: 3 }}>

@@ -1,8 +1,11 @@
 // Core dependencies import
-import meHeader from '../image/meHeaderSmall.png'
-import googlecert from '../image/googlecert.png'
-import docximport from '../image/docximport.jpg'
-import selection from '../image/selection.jpg'
+import { motion, AnimatePresence } from 'framer-motion'
+
+// Asset import
+import meHeader from '../static/image/meHeaderSmall.png'
+import googlecert from '../static/image/googlecert.png'
+import docximport from '../static/image/docximport.jpg'
+import selection from '../static/image/selection.jpg'
 
 // MUI import
 import { Grid, Typography, Link, Stack, IconButton, Card, CardActions, CardContent, CardMedia, Divider } from "@mui/material";
@@ -142,11 +145,20 @@ const Home = () => {
     <Grid container variant="containerGrid" sx={{ paddingLeft: { md: 'none', lg: 30 }, paddingRight: { md: 'none', lg: 30 } }}>
       {/* content grid */}
       <Grid item xs={12} className="mainGrid" variant="mainGrid" sx={{ paddingTop: { xs: 3, md: 7 }, paddingBottom: 5 }}>
-        {introduction()}
-        <Divider sx={{ marginTop: 5, marginBottom: 5 }} />
-        {about()}
-        <Divider sx={{ marginTop: 5, marginBottom: 5 }} />
-        {project()}
+        <AnimatePresence>
+          <motion.div
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            exit={{ opacity: 0, y: -50 }}
+            transition={{ duration: 0.3 }}
+          >
+            {introduction()}
+            <Divider sx={{ marginTop: 5, marginBottom: 5 }} />
+            {about()}
+            <Divider sx={{ marginTop: 5, marginBottom: 5 }} />
+            {project()}
+          </motion.div>
+        </AnimatePresence>
       </Grid>
     </Grid >
   )

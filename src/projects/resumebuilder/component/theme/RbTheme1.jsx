@@ -1,14 +1,15 @@
+// Core dependencies
 import { useRef, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
+// Custom import
+import { skillLevelRate, socialIcon } from '../staticFunction'
+// import { dummyData } from './dummyData'
+import portraitPlaceholder from '../../image/portraitPlaceholder.png'
+
+// MUI import
 import { Divider, Grid, Paper, Box, Typography, Link, Stack, Icon } from '@mui/material'
 import { Email, Phone } from '@mui/icons-material'
-import { skillLevelRate, socialIcon } from '../staticFunction'
-import { dummyData } from './dummyData'
-
-// import experience from "../staticValue/experience"
-
-// Dummy
-
 
 // Style
 const leftPane = {
@@ -17,18 +18,9 @@ const leftPane = {
   padding: '1.5rem',
 }
 
-// const photoStyle = {
-//   width: '170px',
-//   height: 'auto',
-//   borderRadius: "50%",
-//   align: 'center',
-//   boxShadow: '5px 5px 15px grey'
-// }
-
 const rightPane = {
   padding: '1.5rem'
 }
-
 
 // Left pane
 function addressBlock (personalDetail) {
@@ -36,8 +28,8 @@ function addressBlock (personalDetail) {
   return (
     <Grid item xs={12}>
       <Typography variant='h6'>Contact / Address</Typography>
-      <Stack direction='row' alignContent='center' spacing={1}><Email /><Typography variant="body1">{email}</Typography></Stack>
-      <Stack direction='row' alignContent='center' spacing={1}><Phone /><Typography variant="body1">{tel}</Typography></Stack>
+      <Stack direction='row' alignContent='center' spacing={1}>{email === '' ? null : <Email fontSize="small" />}<Typography variant="body1">{email}</Typography></Stack>
+      <Stack direction='row' alignContent='center' spacing={1}>{tel === '' ? null : <Phone fontSize="small" />}<Typography variant="body1">{tel}</Typography></Stack>
       <br />
       <Typography variant="body2">{address}</Typography>
       <Typography variant="body2">{city}</Typography>
@@ -68,9 +60,9 @@ function socialBlock (social) {
     <Grid item xs={12}>
       <Typography variant='h6'>Social</Typography>
       {social.map((value, index) =>
-        <Typography key={index} variant="body1">
-          <Link href={value.link} underline="hover" target="_blank" rel="noopener noreferrer" color="inherit">{socialIcon(value.platform)} {value.platform}</Link>
-        </Typography>
+        <Link href={value.link} underline="hover" target="_blank" rel="noopener noreferrer" color="inherit" key={index}>
+          <Stack direction="row" align="center" spacing={0.5}>{socialIcon(value.platform)} <Typography variant="body1">{value.link}</Typography></Stack>
+        </Link>
       )}
     </Grid>
   )
@@ -196,43 +188,53 @@ function certAndLicenseBlock (certAndLicense) {
 
 function RbTheme1 (props) {
   const resumeRef = useRef()
-  // const { personalDetail, social, skill, experience, language, education, certAndLicense } = props.data
-  const { personalDetail, social, skill, experience, language, education, certAndLicense } = dummyData
+  const { personalDetail, social, skill, experience, language, education, certAndLicense } = props.data
+  // const { personalDetail, social, skill, experience, language, education, certAndLicense } = dummyData
   const { resumeTheme, setResumeTheme, photoStyle, skillStyle } = props.style
   useEffect(() => {
     setResumeTheme(current => ({ ...current, ref: resumeRef.current }))
   }, [setResumeTheme])
   if (resumeTheme.theme !== 'RbTheme1') return null
+  let imgSrc = personalDetail.photo === '' ? portraitPlaceholder : personalDetail.photo
   return (
     <Grid item xs={12}>
-      <Paper id='RbTheme1' className='a4' elevation={3} >
-        <Box ref={resumeRef} className="print-container">
-          <Grid container className="print-fullpage-element">
-            <Grid item xs={4} style={leftPane}>
-              <Typography align='center'><img src={personalDetail.photo} alt={personalDetail.fullname}
-                style={{ borderRadius: photoStyle.radius, width: photoStyle.width, boxShadow: '5px 5px 15px grey' }} /></Typography>
-              <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
-              {addressBlock(personalDetail)}
-              <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
-              {skillBlock(skill, skillStyle)}
-              <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
-              {socialBlock(social)}
-              <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
-              {languageBlock(language)}
-            </Grid>
-            <Grid item xs={8} style={rightPane}>
-              {nameAndCaptionblock(personalDetail)}
-              <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
-              {aboutBlock(personalDetail)}
-              <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
-              {experienceBlock(experience)}
-              {educationBlock(education)}
-              <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
-              {certAndLicenseBlock(certAndLicense)}
-            </Grid>
-          </Grid>
-        </Box>
-      </Paper>
+      <AnimatePresence>
+        <motion.div
+          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 50 }}
+          exit={{ opacity: 0, x: -50 }}
+          transition={{ duration: 0.3 }}
+        >
+          <Paper id='RbTheme1' className='a4' elevation={3} >
+            <Box ref={resumeRef} className="print-container">
+              <Grid container className="print-fullpage-element">
+                <Grid item xs={4} style={leftPane}>
+                  <Typography align='center'><img src={imgSrc} alt={personalDetail.fullname}
+                    style={{ borderRadius: photoStyle.radius, width: photoStyle.width, boxShadow: '5px 5px 15px grey' }} /></Typography>
+                  <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
+                  {addressBlock(personalDetail)}
+                  <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
+                  {skillBlock(skill, skillStyle)}
+                  <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
+                  {socialBlock(social)}
+                  <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
+                  {languageBlock(language)}
+                </Grid>
+                <Grid item xs={8} style={rightPane}>
+                  {nameAndCaptionblock(personalDetail)}
+                  <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
+                  {aboutBlock(personalDetail)}
+                  <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
+                  {experienceBlock(experience)}
+                  {educationBlock(education)}
+                  <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
+                  {certAndLicenseBlock(certAndLicense)}
+                </Grid>
+              </Grid>
+            </Box>
+          </Paper>
+        </motion.div>
+      </AnimatePresence>
     </Grid>
   )
 }

@@ -1,11 +1,13 @@
+// Core dependencies
 import { useRef, useEffect } from 'react'
-
+import { motion, AnimatePresence } from 'framer-motion'
+// Custom import
+import { skillLevelRate, socialIcon } from '../staticFunction'
+// import { dummyData } from './dummyData'
+import portraitPlaceholder from '../../image/portraitPlaceholder.png'
+// MUI import
 import { Divider, Grid, Paper, Typography, Link, Stack, Icon, Box } from '@mui/material'
 import { Email, PhoneRounded, LocationOn } from '@mui/icons-material'
-
-import { skillLevelRate, socialIcon } from '../staticFunction'
-import { dummyData } from './dummyData'
-
 
 function nameAndCaptionblock (personalDetail) {
   const { fullname, caption } = personalDetail
@@ -31,9 +33,9 @@ function socialBlock (social) {
   return (
     <Box display='flex' gap={2} xs={12}>
       {social.map((value, index) =>
-        <Typography key={index} variant="body1">
-          <Link href={value.link} underline="hover" target="_blank" rel="noopener noreferrer" color="inherit">{socialIcon(value.platform)} {value.link}</Link>
-        </Typography>
+        <Link href={value.link} underline="hover" target="_blank" rel="noopener noreferrer" color="inherit" key={index}>
+          <Stack direction="row" align="center" spacing={0.5}>{socialIcon(value.platform)} <Typography variant="body1">{value.link}</Typography></Stack>
+        </Link>
       )}
     </Box>
 
@@ -157,72 +159,82 @@ function RbTheme2 (props) {
     setResumeTheme(current => ({ ...current, ref: resumeRef.current }))
   }, [setResumeTheme])
   if (resumeTheme.theme !== 'RbTheme2') { return null }
+  let imgSrc = personalDetail.photo === '' ? portraitPlaceholder : personalDetail.photo
   return (
     <Grid item xs={12}>
-      <Paper id='RbTheme2' className='a4' elevation={3} >
-        <Box ref={resumeRef}>
-          <Grid item xs={12} sx={{ height: 14, backgroundColor: '#3a3a3b', marginBottom: 1 }} />
-          <Grid container >
-            <Grid item container xs={12} sx={{ padding: 3 }}>
-              <Grid item xs={9}>
-                {nameAndCaptionblock(personalDetail)}
-                <br />
-                {aboutBlock(personalDetail)}
-                <br />
-                {socialBlock(social)}
-              </Grid>
-              <Grid item xs={3}>
-                <Typography align='center'><img src={personalDetail.photo} alt={personalDetail.fullname}
-                  style={{ borderRadius: photoStyle.radius, width: photoStyle.width, boxShadow: '5px 5px 15px grey' }} /></Typography>
-              </Grid>
-            </Grid>
-            <Grid item container xs={12}>
-              <Box display='flex' sx={{ flex: 1, backgroundColor: '#3a3a3b', alignItems: 'center' }}>
-                <Box sx={{ flexGrow: 1, padding: 2 }}>
-                  <Stack direction='row' spacing={1} justifyContent="center">
-                    <PhoneRounded sx={{ fontSize: 40, color: 'white', marginTop: 1 }} />
-                    <Box>
-                      <Typography variant='h6' fontWeight='bold' color="white">Phone</Typography>
-                      <Typography variant='body1' color="#a6a6a6">{personalDetail.tel}</Typography>
+      <AnimatePresence>
+        <motion.div
+          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 50 }}
+          exit={{ opacity: 0, x: -50 }}
+          transition={{ duration: 0.3 }}
+        >
+          <Paper id='RbTheme2' className='a4' elevation={3} >
+            <Box ref={resumeRef} className="print-container">
+              <Grid item xs={12} sx={{ height: 14, backgroundColor: '#3a3a3b', marginBottom: 1 }} />
+              <Grid container >
+                <Grid item container xs={12} sx={{ padding: 3 }}>
+                  <Grid item xs={9}>
+                    {nameAndCaptionblock(personalDetail)}
+                    <br />
+                    {aboutBlock(personalDetail)}
+                    <br />
+                    {socialBlock(social)}
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography align='center'><img src={imgSrc} alt={personalDetail.fullname}
+                      style={{ borderRadius: photoStyle.radius, width: photoStyle.width, boxShadow: '5px 5px 15px grey' }} /></Typography>
+                  </Grid>
+                </Grid>
+                <Grid item container xs={12}>
+                  <Box display='flex' sx={{ flex: 1, backgroundColor: '#3a3a3b', alignItems: 'center' }}>
+                    <Box sx={{ flexGrow: 1, padding: 2 }}>
+                      <Stack direction='row' spacing={1} justifyContent="center">
+                        <PhoneRounded sx={{ fontSize: 40, color: 'white', marginTop: 1 }} />
+                        <Box>
+                          <Typography variant='h6' fontWeight='bold' color="white">Phone</Typography>
+                          <Typography variant='body1' color="#a6a6a6">{personalDetail.tel}</Typography>
+                        </Box>
+                      </Stack>
                     </Box>
-                  </Stack>
-                </Box>
-                <Box sx={{ flexGrow: 1, padding: 2 }}>
-                  <Stack direction='row' spacing={1} justifyContent="center">
-                    <Email sx={{ fontSize: 40, color: 'white', marginTop: 1 }} />
-                    <Box>
-                      <Typography variant='h6' fontWeight='bold' color="white">Email</Typography>
-                      <Typography variant='body1' color="#a6a6a6">{personalDetail.email}</Typography>
+                    <Box sx={{ flexGrow: 1, padding: 2 }}>
+                      <Stack direction='row' spacing={1} justifyContent="center">
+                        <Email sx={{ fontSize: 40, color: 'white', marginTop: 1 }} />
+                        <Box>
+                          <Typography variant='h6' fontWeight='bold' color="white">Email</Typography>
+                          <Typography variant='body1' color="#a6a6a6">{personalDetail.email}</Typography>
+                        </Box>
+                      </Stack>
                     </Box>
-                  </Stack>
-                </Box>
-                <Box sx={{ flexGrow: 1, padding: 2, backgroundColor: '#494949' }}>
-                  <Stack direction='row' spacing={1} justifyContent="center">
-                    <LocationOn sx={{ fontSize: 40, color: 'white', marginTop: 1 }} />
-                    <Box>
-                      <Typography variant='h6' fontWeight='bold' color="white">Address</Typography>
-                      <Typography variant='body1' color="#a6a6a6">{personalDetail.address + ',' + personalDetail.country}</Typography>
+                    <Box sx={{ flexGrow: 1, padding: 2, backgroundColor: '#494949' }}>
+                      <Stack direction='row' spacing={1} justifyContent="center">
+                        <LocationOn sx={{ fontSize: 40, color: 'white', marginTop: 1 }} />
+                        <Box>
+                          <Typography variant='h6' fontWeight='bold' color="white">Address</Typography>
+                          <Typography variant='body1' color="#a6a6a6">{personalDetail.address + ',' + personalDetail.country}</Typography>
+                        </Box>
+                      </Stack>
                     </Box>
-                  </Stack>
-                </Box>
-              </Box>
-            </Grid>
-            <Grid item container xs={12} sx={{ backgroundColor: '#e8e8e8', padding: 3 }} >
-              <Grid item xs={8}>
-                {experienceBlock(experience)}
-                {certAndLicenseBlock(certAndLicense)}
+                  </Box>
+                </Grid>
+                <Grid item container xs={12} sx={{ backgroundColor: '#e8e8e8', padding: 3 }} >
+                  <Grid item xs={8}>
+                    {experienceBlock(experience)}
+                    {certAndLicenseBlock(certAndLicense)}
+                  </Grid>
+                  <Grid item xs={4}>
+                    {skillBlock(skill, skillStyle)}
+                    <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
+                    {languageBlock(language)}
+                    <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
+                    {educationBlock(education)}
+                  </Grid>
+                </Grid>
               </Grid>
-              <Grid item xs={4}>
-                {skillBlock(skill, skillStyle)}
-                <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
-                {languageBlock(language)}
-                <Divider sx={{ marginTop: 2, marginBottom: 2, borderColor: 'grey' }} />
-                {educationBlock(education)}
-              </Grid>
-            </Grid>
-          </Grid>
-        </Box>
-      </Paper >
+            </Box>
+          </Paper >
+        </motion.div>
+      </AnimatePresence>
     </Grid >
   )
 }

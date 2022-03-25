@@ -275,7 +275,7 @@ const ChartJS = () => {
   return (
     <Paper elevation={3} sx={{ padding: 3 }}>
       <Grid item xs={12} pb={3} borderBottom={1} borderColor='divider'>
-        <Typography variant='h4'>Data visualization and table</Typography>
+        <Typography variant='h5'>Data visualization and table</Typography>
         <Typography variant='subtitle1'>Expand from previous bits and take data to make it more presentatable by aggregate data into "Data Viz"</Typography>
       </Grid>
       <Grid container align='center'>

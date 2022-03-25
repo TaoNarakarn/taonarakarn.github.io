@@ -1,4 +1,13 @@
 const Note = () => {
+  // ToDo
+  // add a style component (font family, size and color)
+  // fix print not goes all the way to end of the last page
+  // default style value for each theme
+  // create a template done 2 fix default ones to looks better then add 1 more
+  // learn about export to PDF jsPDF? React-PDF? (I can print now but user still need to click save to PDF from their printing page)
+
+  // Loading logo on home page
+  // learn framer-motion
   return (
     <>
       <div>
