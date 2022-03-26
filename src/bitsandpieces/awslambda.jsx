@@ -27,10 +27,12 @@ const AWSLambda = () => {
     })
       .then(response => {
         console.log(response)
+        setLambda(JSON.stringify(response.data))
       }, (err) => {
         console.log(err)
       })
   }
+  // (it will show error since I'm trying to set it to connect to mongoDB atlas from there when finish it should get some mock data from database)
   return (
     <>
       <Typography variant='h6'>GET and POST requet to AWS Lambda</Typography>
@@ -40,7 +42,7 @@ const AWSLambda = () => {
         <Button variant="contained" onClick={handleLambdaPost}>Send Post request to lambda</Button>
       </Stack>
       <br />
-      <Typography variant='body1'>Response (it will show error since I'm trying to set it to connect to mongoDB atlas from there when finish it should get some mock data from database) : </Typography>
+      <Typography variant='body1'>Response : </Typography>
       <Box>{lambda}</Box>
     </>
   )

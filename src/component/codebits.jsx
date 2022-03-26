@@ -5,11 +5,14 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 // Import bits and pieces component
 import RandomUser from '../bitsandpieces/randomuser'
-import AWSLambda from '../bitsandpieces/awslambda'
 import ChartJS from '../bitsandpieces/chartjs'
+import AWSLambda from '../bitsandpieces/awslambda'
+import Framer from '../bitsandpieces/framer'
+import Home from '../projects/accentech/home'
 
 // MUI imports
 import { Typography, Grid, Box, Tabs, Tab, Divider } from "@mui/material"
+
 
 function TabPanel (props) {
   const { children, value, index, ...other } = props;
@@ -54,7 +57,6 @@ const CodeBits = () => {
 
   return (
     <Grid container variant="containerGrid" sx={{ paddingLeft: { md: 'none', lg: 30 }, paddingRight: { md: 'none', lg: 30 } }}>
-
       <Grid item xs={12} className="mainGrid" variant="mainGrid" sx={{ paddingTop: { xs: 3, md: 7 }, paddingBottom: 5 }}>
         <AnimatePresence>
           <motion.div
@@ -73,8 +75,8 @@ const CodeBits = () => {
               <Tabs value={tab} onChange={handleTabChange} variant="scrollable" scrollButtons="auto" aria-label="codebits-tabs" >
                 <Tab label="Get data from API" {...a11yProps(0)} />
                 <Tab label="Chart JS" {...a11yProps(1)} />
-                <Tab label="AWS lambda API Test" {...a11yProps(2)} />
-                {/* <Tab label="AWS Lambda nodejs API" {...a11yProps(2)} /> */}
+                <Tab label="Web Draft" {...a11yProps(2)} />
+                <Tab label="Framer animation" {...a11yProps(3)} />
               </Tabs>
             </Box>
             <TabPanel value={tab} index={0}>
@@ -84,11 +86,11 @@ const CodeBits = () => {
               <ChartJS />
             </TabPanel>
             <TabPanel value={tab} index={2}>
-              <AWSLambda />
+              <Home />
             </TabPanel>
-            {/* <TabPanel value={tab} index={2}>
-
-            </TabPanel> */}
+            <TabPanel value={tab} index={3}>
+              <Framer />
+            </TabPanel>
           </motion.div>
         </AnimatePresence>
       </Grid>
